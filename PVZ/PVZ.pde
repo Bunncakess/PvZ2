@@ -1,7 +1,7 @@
 PImage back;
 
 void setup(){
-     size(1200, 514);
+     size(900, 514);
      back = loadImage("Background1.png");
      
 }
@@ -9,3 +9,5 @@ void setup(){
 void draw(){
     image(back, 0, 0);
 }
+
+
