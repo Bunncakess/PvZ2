@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-class Sun(){
-=======
-class Sun(){ //not sunflower plant
->>>>>>> 0e142d1683a3f1f317eaa4f1314cd1db89d5662e
+class Sun{ //not sunflower plant
+
     int x, y, r;
     int dx, dy; //speed 
     int cr, cg, cb; //color
@@ -24,12 +21,9 @@ class Sun(){ //not sunflower plant
         fill(cr, cg, cb);
         circle(x,y,r*2);
     }
-<<<<<<< HEAD
-}
-=======
+
 }
 
-Class Peashooter(){
-    Peashooter()
+class Peashooter{
+    //Peashooter();
 }
->>>>>>> 0e142d1683a3f1f317eaa4f1314cd1db89d5662e

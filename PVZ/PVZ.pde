@@ -14,7 +14,6 @@ void draw(){
     // Begin loop for rows
         for (int j = 0; j < 6; j++) {
 
-        // Scaling up to draw a rectangle at (x,y)
         fill(0);
         stroke(225);
         // For every column and row, a rectangle is drawn at an (x,y) location scaled and sized by videoScale.
