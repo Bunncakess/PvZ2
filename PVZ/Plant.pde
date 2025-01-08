@@ -1,4 +1,5 @@
-class Sun(){ //not sunflower plant
+class Sun{ //not sunflower plant
+
     int x, y, r;
     int dx, dy; //speed 
     int cr, cg, cb; //color
@@ -20,8 +21,9 @@ class Sun(){ //not sunflower plant
         fill(cr, cg, cb);
         circle(x,y,r*2);
     }
+
 }
 
-Class Peashooter(){
-    Peashooter()
+class Peashooter{
+    //Peashooter();
 }
