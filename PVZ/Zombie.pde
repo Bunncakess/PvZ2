@@ -1,6 +1,5 @@
 
-
-/*class ZOMBIE(){
+class ZOMBIE(){
     int x = 100; //HP
     int y = 25; //ATTACK
     int z = 10//Movement
@@ -22,4 +21,4 @@
         y = tempY;
         z = tempZ;
     }
-};*/
+}
