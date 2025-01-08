@@ -3,11 +3,6 @@ PImage back;
 void setup(){
      size(900, 514);
      back = loadImage("Background1.png");
-<<<<<<< HEAD
-     
-
-=======
->>>>>>> 0e142d1683a3f1f317eaa4f1314cd1db89d5662e
      
 }
 
@@ -15,7 +10,6 @@ void draw(){
     int x = 220;
     int y = 70;
     image(back, 0, 0);
-<<<<<<< HEAD
     for (int i = 0; i < 9; i++) {
     // Begin loop for rows
         for (int j = 0; j < 6; j++) {
@@ -31,6 +25,4 @@ void draw(){
         y = 70;
   }
 }
-=======
-}
->>>>>>> 0e142d1683a3f1f317eaa4f1314cd1db89d5662e
+
