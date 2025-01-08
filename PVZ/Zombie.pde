@@ -1,12 +1,17 @@
+PImage nzombie;
 
-/*class ZOMBIE{
-    int x = 100; //HP
-    int y = 25; //ATTACK
-    int z = 10//Movement
+class Zombie1{
+    int private x;
+    int private y;
+    int private z;
 
-    ZOMBIE (int tempX, int tempY, int tempZ){
-        x = tempX;
-        y = tempY;
-        z = tempZ;
+    void Zombie1(int tempx, int tempy, int tempz){
+        
     }
-}*/
+
+    void display(){
+        nzombie = loadImage("zombie1.png");
+        image(nzombie, x, y);
+
+    }
+}

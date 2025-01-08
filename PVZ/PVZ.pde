@@ -1,9 +1,11 @@
+
+Zombie1 zomzom;
 PImage back;
 
 void setup(){
      size(900, 514);
      back = loadImage("Background1.png");
-     
+     zomzom = new Zombie1();
 }
 
 void draw(){
@@ -23,5 +25,6 @@ void draw(){
         x = x+ 70;
         y = 70;
   }
+  zomzom.display();
 }
 
