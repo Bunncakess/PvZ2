@@ -1,4 +1,4 @@
-class Sun(){
+/*class Sun(){
     int x, y, r;
     int dx, dy; //speed 
     int cr, cg, cb; //color
@@ -19,4 +19,4 @@ class Sun(){
         fill(cr, cg, cb);
         circle(x,y,r*2);
     }
-}
+}*/
