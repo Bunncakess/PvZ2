@@ -29,9 +29,10 @@ void draw(){
         }
         x = x+ 70;
         y = 70;
-  }
-  zomzom.display();
 
+  }
+
+  zomzom.display();
 }
 
 void mousePressed(){
