@@ -17,23 +17,9 @@ void draw(){
 
     g.displayGrid();
 
-    for (int i = 0; i < 9; i++) {
-    // Begin loop for rows
-        for (int j = 0; j < 5; j++) {
-
-        fill(0, 0 ,0, 0);
-        stroke(225);
-        // For every column and row, a rectangle is drawn at an (x,y) location scaled and sized by videoScale.
-        rect(x, y, 70, 85);
-        y = y + 85;
-        }
-        x = x+ 70;
-        y = 70;
+ // zomzom.display();
 
   }
-
-  zomzom.display();
-}
 
 void mousePressed(){
     g.click(mouseX, mouseY);
