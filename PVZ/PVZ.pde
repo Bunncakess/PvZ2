@@ -24,8 +24,6 @@ void mousePressed(){
 }
 
 
-
-
 class grid {
     int ROWS, COLS;
     
