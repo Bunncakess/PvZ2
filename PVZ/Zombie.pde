@@ -1,29 +1,22 @@
 PImage nzombie;
 
 class Zombie1{
-    int posX, moveX, posY;
-    
-    int [] ZombieLanes = new int[5];
-    ZombieLanes [0] = 20;
-    ZombieLanes [1] = 105;
-    ZombieLanes [2] = 190;
-    ZombieLanes [3] = 275;
-    ZombieLanes [4] = 360;
-
-    int [] RandomLanes = int(random(ZombieLanes.length));
+    int moveX = 10; // speed
+    int posX = 875; //position for X level
+    int [] ZombieLanes = {25, 105, 190, 275, 360}; //positions for Y level
+    int RandomLane = ZombieLanes[int(random(ZombieLanes.length))];
 
     void Zombie1(){
-
-
-
         nzombie = loadImage("Zombie1.png");
-        
     }
+
 
     void update(){
+        if (posX < 200){
+            posX -= moveX;
+        }
     }
-
     void display(){
-        image(nzombie, posX, RandomLanes);
+        image(nzombie, posX, RandomLane);
     }
 }

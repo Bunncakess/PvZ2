@@ -6,18 +6,16 @@ void setup(){
      size(900, 514);
      g = new grid(9, 5);
      back = loadImage("Background1.png");
-
-
      zomzom = new Zombie1();
-
+     zomzom.Zombie1();
 }
 
 void draw(){
     image(back, 0, 0);
-
     g.displayGrid();
 
- // zomzom.display();
+    zomzom.display();
+
 
   }
 
