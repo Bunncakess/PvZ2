@@ -1,21 +1,21 @@
-
-Zombie1 zomzom;
+ArrayList<Zombie> zGroup = new ArrayList<Zombie>();
+Zombie zomzom;
 PImage back;
 grid g;
 void setup(){
      size(900, 514);
      g = new grid(9, 5);
      back = loadImage("Background1.png");
-     zomzom = new Zombie1();
-     zomzom.Zombie1();
+     zomzom = new Zombie();
+     zomzom.Zombie();
 }
 
 void draw(){
     image(back, 0, 0);
     g.displayGrid();
-
+    
     zomzom.display();
-
+    zomzom.update();
 
   }
 
