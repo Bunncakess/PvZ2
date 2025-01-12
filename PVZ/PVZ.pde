@@ -14,8 +14,15 @@ void draw(){
     image(back, 0, 0);
     g.displayGrid();
     
-    zomzom.display();
-    zomzom.update();
+
+    if (zGroup.size() < 4){
+        zGroup.add(new Zombie());
+    }
+
+    for (Zombie zom : zGroup){
+        zomzom.display();
+        zomzom.update();
+    }
 
   }
 

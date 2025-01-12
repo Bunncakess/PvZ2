@@ -11,22 +11,22 @@ class Zombie{
     boolean keyPressedOnce = false;
 
     void Zombie(){
-        ztype = (int) random(1,4);
+        ztype = (int) random(1,4); 
         if (ztype == 1){
             nzombie = loadImage("Zombie1.png");
         }
         else if (ztype == 2){
-            nzombie = loadImage("Zombie1.png"); ///NEED ZOMBBIE 2 IMGE
+            nzombie = loadImage("Zombie2.png"); 
         }
         else{
-            nzombie = loadImage("Zombie1.png"); ///NEED ZOMBBIE 3 IMGE
+            nzombie = loadImage("Zombie3.png"); 
         }
 
     }
 
     void update() {
         if (posX > endgoal) {     
-            delay(3000);      
+            delay(1000);      
             posX -= moveX;
         }
         else{
