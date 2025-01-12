@@ -10,12 +10,12 @@ class Zombie{
     boolean end = false;
     boolean keyPressedOnce = false;
 
-    void Zombie(int i){
-         
-        if (i == 1){
+    void Zombie(){
+        ztype = (int) random(1,4); 
+        if (ztype == 1){
             nzombie = loadImage("Zombie1.png");
         }
-        else if (i == 2){
+        else if (ztype == 2){
             nzombie = loadImage("Zombie2.png"); 
         }
         else{
