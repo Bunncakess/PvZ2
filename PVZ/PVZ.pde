@@ -7,24 +7,24 @@ void setup(){
      g = new grid(9, 5);
      back = loadImage("Background1.png");
      zomzom = new Zombie();
-     zomzom.Zombie();
+
 }
 
-void draw(){
+void draw() {
     image(back, 0, 0);
     g.displayGrid();
-    
 
-    if (zGroup.size() < 4){
+    // Spawn new zombies if needed
+    if (zGroup.size() < 7) {
         zGroup.add(new Zombie());
     }
 
-    for (Zombie zom : zGroup){
-        zomzom.display();
-        zomzom.update();
+    // Iterate over each zombie in the group
+    for (Zombie zom : zGroup) {
+        zom.display();
+        zom.update();
     }
-
-  }
+}
 
 void mousePressed(){
     g.click(mouseX, mouseY);
