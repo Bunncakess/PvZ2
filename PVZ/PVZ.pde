@@ -14,12 +14,11 @@ void draw() {
     image(back, 0, 0);
     g.displayGrid();
 
-    // Spawn new zombies if needed
-    if (zGroup.size() < 7) {
+    if (zGroup.size() < 7) { /// ZOM LIMIT
         zGroup.add(new Zombie());
     }
 
-    // Iterate over each zombie in the group
+
     for (Zombie zom : zGroup) {
         zom.display();
         zom.update();
