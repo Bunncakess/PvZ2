@@ -16,7 +16,8 @@ void draw(){
     
 
     if (zGroup.size() < 4){
-        zGroup.add(new Zombie());
+        ztype = (int) random(1,4);
+        zGroup.add(new Zombie(ztype));
     }
 
     for (Zombie zom : zGroup){
