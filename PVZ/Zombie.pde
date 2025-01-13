@@ -3,8 +3,8 @@ PImage nzombie;
 class Zombie {
     int ztype; // 1 = normal 2 = cone 3 = bucket
     int endgoal = 190;
-    int moveX = 34; // speed 12
-    int posX = 875; // position for X level; 875
+    float moveX = 0.2; // speed 12
+    float posX = 875; // position for X level; 875
     int[] ZombieLanes = {25, 105, 190, 275, 360}; // positions for Y level
     int RandomLane;
     boolean end = false;
@@ -27,10 +27,10 @@ class Zombie {
 
     void update() {
         if (posX > endgoal) {
-            delay(1000);
+            //delay(1000);
             posX -= moveX;
         } else {
-            delay(2000);
+            //delay(2000);
             end = true;
         }
     }
