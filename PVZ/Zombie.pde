@@ -4,7 +4,7 @@ class Zombie {
     int ztype; // 1 = normal 2 = cone 3 = bucket
     int endgoal = 190;
     float moveX = 0.2; // speed 12
-    float posX = 875; // position for X level; 875
+    float posX = 220; // position for X level; 875
     int[] ZombieLanes = {25, 105, 190, 275, 360}; // positions for Y level
     int RandomLane;
     boolean end = false;
@@ -16,9 +16,11 @@ class Zombie {
         ztype = (int) random(1, 4);
         if (ztype == 1) {
             nzombie = loadImage("Zombie1.png");
-        } else if (ztype == 2) {
+        } 
+        else if (ztype == 2) {
             nzombie = loadImage("Zombie2.png");
-        } else {
+        } 
+        else {
             nzombie = loadImage("Zombie3.png");
         }
 
@@ -29,7 +31,8 @@ class Zombie {
         if (posX > endgoal) {
             //delay(1000);
             posX -= moveX;
-        } else {
+        } 
+        else {
             //delay(2000);
             end = true;
         }
@@ -50,7 +53,8 @@ class Zombie {
             if (keyPressed && !keyPressedOnce) {
                 if (key == '1') {
                     resetGame();
-                } else if (key == '2') {
+                } 
+                else if (key == '2') {
                     exit();
                 }
                 keyPressedOnce = true;
