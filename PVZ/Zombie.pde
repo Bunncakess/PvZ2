@@ -36,7 +36,7 @@ class Zombie {
     }
 
     void display() {
-        String endcredit = "Zombies have reached the end. You lost. \nHold \"1\" to retry or Hold \"2\" to quit";
+        String endcredit = "Zombies have reached the end. You lost. \nPress \"1\" to retry or Press \"2\" to quit";
         textSize(30);
         fill(0);
         textAlign(CENTER);
@@ -67,4 +67,18 @@ class Zombie {
     void keyReleased() {
         keyPressedOnce = false; // Reset the flag when the key is released
     }
+
+    // void ifhit(){
+    //     boolean hit = false;
+    //     if (!hit){
+    //         cotinue game;
+    //     }
+    //     else{
+    //         remove zombie from array
+    //     }
+    // }
+
+    // void numberedzombie(){
+    //     for (zombie that is down in lane 1 must be removed from the array not lane2 zombie who is full hp)
+    // }
 }
