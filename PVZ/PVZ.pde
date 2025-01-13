@@ -1,5 +1,6 @@
 ArrayList<Zombie> zGroup = new ArrayList<Zombie>();
 Zombie zomzom;
+Seeds seed_sunflower, seed_peashooter, seed_walnut;
 PImage back;
 grid g;
 void setup(){
@@ -7,13 +8,18 @@ void setup(){
      g = new grid(9, 5);
      back = loadImage("Background1.png");
      zomzom = new Zombie();
+     seed_sunflower = new Seeds("sunflower_seed");
+     seed_peashooter = new Seeds("peashooter_seed");
+     seed_walnut = new Seeds("walnut_seed");
 
 }
 
 void draw() {
     image(back, 0, 0);
     g.displayGrid();
-
+    seed_sunflower.displaySeed();
+    seed_peashooter.displaySeed();
+    seed_walnut.displaySeed();
     if (zGroup.size() < 7) { /// ZOM LIMIT
         zGroup.add(new Zombie());
     }
