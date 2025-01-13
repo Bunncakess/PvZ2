@@ -31,7 +31,7 @@ void draw() {
     
 
 
-    if (zGroup.size() < 7) { /// ZOM LIMIT
+    if (zGroup.size() < 6) { /// ZOM LIMIT
         zGroup.add(new Zombie());
     }
 
