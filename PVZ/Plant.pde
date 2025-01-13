@@ -1,7 +1,7 @@
 class Sun { //not sunflower plant
 
 }
-PImage smile;
+PImage smile, doja;
 class Sunflower{
 
 
@@ -17,6 +17,11 @@ class Sunflower{
 
 class PeaShooter{ 
     PeaShooter(){
+        doja = loadImage("Peashooter.png");
+    }
+    void display(int x, int y){
+        doja.resize(47,74);
+        image (doja, x, y);
         
     }
 }

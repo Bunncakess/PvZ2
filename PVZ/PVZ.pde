@@ -2,6 +2,7 @@ ArrayList<Zombie> zGroup = new ArrayList<Zombie>();
 Zombie zomzom;
 Seeds seed_sunflower, seed_peashooter, seed_walnut;
 Sunflower tower;
+PeaShooter arrow;
 PImage back;
 grid g;
 void setup(){
@@ -16,6 +17,7 @@ void setup(){
      seed_walnut = new Seeds("walnut_seed", 5);
 
      tower = new Sunflower();
+    arrow = new PeaShooter();
 }
 
 void draw() {
@@ -76,7 +78,13 @@ class grid {
               }
               else if (gridarray[y][x] == true){
               
-              tower.display((y*70)+220, (x*85)+70);
+              if (seed_sunflower.onClick() == true) {
+                tower.display((y*70)+220, (x*85)+70);
+              }
+              
+              if (seed_peashooter.onClick() == true ){
+                arrow.display((y*70)+220, (x*85)+70);
+              }
               
               }
   

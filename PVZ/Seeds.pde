@@ -24,12 +24,13 @@ class Seeds {
     boolean isMouseOver() {
         return mouseX > xPos && mouseX < xPos + 24 && mouseY > yPos && mouseY < yPos + 32;
     }
-    
+    boolean selected = false;
 
-    void onClick() {
+    boolean onClick() {
         if (isMouseOver()) {
-            println(seed_name + " clicked!");
+            selected = true; 
         }
+        return selected; 
     }
 }
 
