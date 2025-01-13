@@ -8,18 +8,24 @@ void setup(){
      g = new grid(9, 5);
      back = loadImage("Background1.png");
      zomzom = new Zombie();
-     seed_sunflower = new Seeds("sunflower_seed");
-     seed_peashooter = new Seeds("peashooter_seed");
-     seed_walnut = new Seeds("walnut_seed");
 
+
+     seed_sunflower = new Seeds("sunflower_seed", 1);
+     seed_peashooter = new Seeds("peashooter_seed", 3);
+     seed_walnut = new Seeds("walnut_seed", 5);
 }
 
 void draw() {
     image(back, 0, 0);
     g.displayGrid();
+
+
     seed_sunflower.displaySeed();
     seed_peashooter.displaySeed();
     seed_walnut.displaySeed();
+
+
+
     if (zGroup.size() < 7) { /// ZOM LIMIT
         zGroup.add(new Zombie());
     }
@@ -33,6 +39,9 @@ void draw() {
 
 void mousePressed(){
     g.click(mouseX, mouseY);
+    seed_sunflower.onClick(); 
+    seed_peashooter.onClick();
+    seed_walnut.onClick();
 }
 
 
