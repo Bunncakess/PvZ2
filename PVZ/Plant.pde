@@ -5,10 +5,10 @@ class Sun { //not sunflower plant
 class Sunflower{
 }
 
-ArrayList<Pea> PeaShooters = new ArrayList<Pea>();
+//ArrayList<Pea> PeaShooters = new ArrayList<Pea>(); //for unlimited amount to place
 
 //draw
-for (Pea PeaShooter)
+
 class PeaShooter{
     int x, y, r;
     int dx, dy; //speed
