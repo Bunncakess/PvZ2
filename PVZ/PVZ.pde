@@ -1,6 +1,7 @@
 ArrayList<Zombie> zGroup = new ArrayList<Zombie>();
 Zombie zomzom;
 Seeds seed_sunflower, seed_peashooter, seed_walnut;
+Sunflower tower;
 PImage back;
 grid g;
 void setup(){
@@ -13,6 +14,8 @@ void setup(){
      seed_sunflower = new Seeds("sunflower_seed", 1);
      seed_peashooter = new Seeds("peashooter_seed", 3);
      seed_walnut = new Seeds("walnut_seed", 5);
+
+     tower = new Sunflower();
 }
 
 void draw() {
@@ -23,7 +26,7 @@ void draw() {
     seed_sunflower.displaySeed();
     seed_peashooter.displaySeed();
     seed_walnut.displaySeed();
-
+    
 
 
     if (zGroup.size() < 7) { /// ZOM LIMIT
@@ -72,7 +75,9 @@ class grid {
               fill(0, 0, 0, 0);
               }
               else if (gridarray[y][x] == true){
-              fill(0, 0,0);
+              
+              tower.display((y*70)+220, (x*85)+70);
+              
               }
   
            rect(xcor, ycor, 70, 85);
