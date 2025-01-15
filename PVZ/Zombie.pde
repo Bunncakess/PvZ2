@@ -39,7 +39,7 @@ class Zombie {
     }
 
     void display() {
-        String endcredit = "Zombies have reached the end. You lost. \nPress \"1\" to retry or Press \"2\" to quit";
+        String endcredit = "Happy belated birthday Richmond!!! UwU wuv u" //"Zombies have reached the end. You lost. \nPress \"1\" to retry or Press \"2\" to quit";
         textSize(30);
         fill(0);
         textAlign(CENTER);
