@@ -82,7 +82,7 @@ class Zombie {
         }
     }
 
-//     void numberedzombie(){
-//         for (zombie that is down in lane 1 must be removed from the array not lane2 zombie who is full hp)
-//     }
+    void numberedzombie(){
+        //for (zombie that is down in lane 1 must be removed from the array not lane2 zombie who is full hp)
+    }
 }

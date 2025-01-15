@@ -1,7 +1,8 @@
+float posX = 220;
 class Sun { //not sunflower plant
 
 }
-PImage smile, doja;
+PImage smile, doja, burret;
 class Sunflower{
 
 
@@ -23,6 +24,22 @@ class PeaShooter{
         doja.resize(47,74);
         image (doja, x, y);
         
+    }
+    void shoot(){
+        if (posX <= 800)
+    }
+
+    void display(){
+        burret = loadImage("PeaBall.png")
+
+    }
+
+    void update(){
+
+    }
+    
+    void ifHit(){
+
     }
 }
 // //ArrayList<Pea> PeaShooters = new ArrayList<Pea>(); //for unlimited amount to place
