@@ -53,21 +53,3 @@ class PeaShooter{
 // }
 
 
-class Pea{
-    
-    Pea(){
-
-    }
-
-    void display(){
-
-    }
-
-    void update(){
-
-    }
-    
-    void ifhit(){
-
-    }
-}
