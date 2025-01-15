@@ -39,7 +39,7 @@ class Zombie {
     }
 
     void display() {
-        String endcredit = "Happy belated birthday Richmond!!! UwU wuv u" //"Zombies have reached the end. You lost. \nPress \"1\" to retry or Press \"2\" to quit";
+        String endcredit = "Happy belated birthday Richmond!!! UwU wuv u"; //"Zombies have reached the end. You lost. \nPress \"1\" to retry or Press \"2\" to quit";
         textSize(30);
         fill(0);
         textAlign(CENTER);
@@ -72,17 +72,17 @@ class Zombie {
         keyPressedOnce = false; // Reset the flag when the key is released
     }
 
-    // void ifhit(){
-    //     boolean hit = false;
-    //     if (!hit){
-    //         cotinue game;
-    //     }
-    //     else{
-    //         remove zombie from array
-    //     }
-    // }
+    void ifhit(){
+        boolean hit = false;
+        if (!hit){
+            cotinue game;
+        }
+        else{
+            remove zombie from array
+        }
+    }
 
-    // void numberedzombie(){
-    //     for (zombie that is down in lane 1 must be removed from the array not lane2 zombie who is full hp)
-    // }
+//     void numberedzombie(){
+//         for (zombie that is down in lane 1 must be removed from the array not lane2 zombie who is full hp)
+//     }
 }
