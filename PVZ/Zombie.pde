@@ -72,7 +72,7 @@ class Zombie {
         keyPressedOnce = false; // Reset the flag when the key is released
     }
 
-    void ifHit(){
+    void ifhit(){
         boolean hit = false;
         if (!hit){
             cotinue game;
@@ -83,6 +83,6 @@ class Zombie {
     }
 
     void numberedzombie(){
-        for (zombie that is down in lane 1 must be removed from the array not lane2 zombie who is full hp)
+        //for (zombie that is down in lane 1 must be removed from the array not lane2 zombie who is full hp)
     }
 }
