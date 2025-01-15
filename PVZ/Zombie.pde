@@ -75,10 +75,10 @@ class Zombie {
     void ifhit(){
         boolean hit = false;
         if (!hit){
-            cotinue game;
+            //cotinue game;
         }
         else{
-            remove zombie from array
+           // remove zombie from array
         }
     }
 

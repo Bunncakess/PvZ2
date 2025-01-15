@@ -2,7 +2,7 @@ float posX = 220;
 class Sun { //not sunflower plant
 
 }
-PImage smile, doja, burret;
+PImage smile, doja, trump, burret;
 class Sunflower{
 
 
@@ -17,6 +17,7 @@ class Sunflower{
 }
 
 class PeaShooter{ 
+    boolean showBurret = false;
     PeaShooter(){
         doja = loadImage("Peashooter.png");
     }
@@ -26,11 +27,12 @@ class PeaShooter{
         
     }
     void shoot(){
-        if (posX <= 800)
+        //if (posX <= 800)
     }
 
     void display(){
-        burret = loadImage("PeaBall.png")
+        showBurret = true; //allows peaball to show
+        burret = loadImage("PeaBall.png");
 
     }
 
@@ -39,7 +41,18 @@ class PeaShooter{
     }
     
     void ifHit(){
+        showBurret = false; //if comes into contact with zombie, peaBall disappears
+    }
+}
 
+class WallNut{
+    WallNut(){
+        trump = loadImage("WallNut.png");
+    }
+    void display(int x, int y){
+        trump.resize(47,74);
+        image (trump, x, y);
+        
     }
 }
 // //ArrayList<Pea> PeaShooters = new ArrayList<Pea>(); //for unlimited amount to place

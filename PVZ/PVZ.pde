@@ -3,6 +3,8 @@ Zombie zomzom;
 Seeds seed_sunflower, seed_peashooter, seed_walnut;
 Sunflower tower;
 PeaShooter arrow;
+WallNut spike;
+
 PImage back;
 grid g;
 void setup(){
@@ -17,7 +19,8 @@ void setup(){
      seed_walnut = new Seeds("walnut_seed", 5);
 
      tower = new Sunflower();
-    arrow = new PeaShooter();
+     arrow = new PeaShooter();
+     spike = new WallNut();
 }
 
 void draw() {
@@ -86,6 +89,9 @@ class grid {
                 arrow.display((y*70)+220, (x*85)+70);
               }
               
+              if (seed_walnut.onClick() == true) {
+                spike.display((y*70)+220, (x*85)+70);
+              }
               }
   
            rect(xcor, ycor, 70, 85);
