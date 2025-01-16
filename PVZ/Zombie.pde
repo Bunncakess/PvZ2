@@ -17,10 +17,10 @@ class Zombie {
             hp = 100;
         } else if (ztype == 2) {
             zombieIMG = loadImage("Zombie2.png");
-            hp = 200;
+            hp = 125;
         } else {
             zombieIMG = loadImage("Zombie3.png");
-            hp = 300;
+            hp = 150;
         }
 
         RandomLane = ZombieLanes[int(random(ZombieLanes.length))]; // randomize lanes
@@ -66,16 +66,18 @@ class Zombie {
     }
 
 
-    // void takeDamage(){
-    //     hp -= damage;
-    //     if (hp <= 0){
-    //         end = true;
-    //     }
+    void takeDamage(int damage){
+        hp -= damage;
+    }
 
-    // }
+    boolean isDead(){
+        return hp <= 0;
+    }
 
-    // boolean isDeadD(){
-    //     return hp <= 0;
-    // }
+    boolean isHit(PeaBall pea){
+        return (pea.posX > posX && pea.posX < posX + zombieIMG.width && pea.posY > RandomLane && pea.posY < RandomLane + zombieIMG.height);
+    
+    
+    }
 
 }

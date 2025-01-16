@@ -1,4 +1,4 @@
-PImage smile, doja, trump, burret; //smile = sunflower, doja = peashooter, trump = wallnut, burret = peaball
+PImage smile, doja, trump; //smile = sunflower, doja = peashooter, trump = wallnut
 class Sunflower{
 
 
@@ -23,52 +23,55 @@ class WallNut{
     }
 }
 
-class PeaShooter{ 
+class PeaShooter {
+    PImage doja;
+    ArrayList<PeaBall> peaBalls;
 
-    PeaShooter(){
+    PeaShooter() {
         doja = loadImage("peashooter.png");
+        doja.resize(47, 74);
+        peaBalls = new ArrayList<>();
     }
 
-    void display(int x, int y){
-        doja.resize(47,74);
-        image (doja, x, y);
-        
-    }
-    void shoot(){
-        // PeaBall newPea = new PeaBall();
-        // peaBalls.add(newPea);
+    void display(int x, int y) {
+        image(doja, x, y);
     }
 
-    void update(){
-        // for (int i = peaBalls.size() - 1; i >= 0; i--) {
-        //     PeaBall pea = peaBalls.get(i);
-        //     pea.update(); 
-        //     pea.display(); 
+    void shoot(float x, float y) {
+        peaBalls.add(new PeaBall(x, y));
+    }
 
-            
-        //     if (pea.posX > width) {
-        //         peaBalls.remove(i);
-        //     }
-        // }
+    void update() {
+        for (int i = peaBalls.size() - 1; i >= 0; i--) {
+            PeaBall pea = peaBalls.get(i);
+            pea.update();
+            pea.display();
+
+            if (pea.posX > width) { 
+                peaBalls.remove(i);
+            }
+        }
     }
 }
 
 
-class PeaBall{
+class PeaBall {
+    PImage burret;
+    float posX, posY;
+    float speed = 5; // Speed 
 
-    // float speed = 5;    // Speed of the pea
-    // int damage = 50;    // Damage dealt by the pea ball
-
-    PeaBall(){
+    PeaBall(float startX, float startY) {
         burret = loadImage("PeaBall.png");
+        burret.resize(20,20);
+        posX = startX;
+        posY = startY;
     }
 
     void update() {
-        // posX += speed;  // Move the pea ball to the right
+        posX += speed; 
     }
 
-    void display(int x, int y) {
-        image(burret, x, y); // Display the pea ball (use burret image)
+    void display() {
+        image(burret, posX, posY);
     }
-
 }

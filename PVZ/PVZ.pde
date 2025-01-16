@@ -4,6 +4,8 @@ Seeds seed_sunflower, seed_peashooter, seed_walnut;
 Sunflower tower;
 PeaShooter arrow;
 WallNut spike;
+PeaShooter shooter;
+
 
 PImage back;
 grid g;
@@ -12,6 +14,7 @@ void setup(){
      g = new grid(9, 5);
      back = loadImage("Background1.png");
      zomzom = new Zombie();
+     shooter = new PeaShooter();
 
 
      seed_sunflower = new Seeds("sunflower_seed", 1);
@@ -26,6 +29,7 @@ void setup(){
 void draw() {
     image(back, 0, 0);
     g.displayGrid();
+    shooter.update();
 
 
     seed_sunflower.displaySeed();
@@ -35,17 +39,35 @@ void draw() {
 
 
     if (zGroup.size() < 6) { /// ZOM LIMIT
-        zGroup.add(new Zombie());
+        if(frameCount % 360 == 0){ ///EVERY 6 SECOSNDA
+            zGroup.add(new Zombie());
+        }
     }
 
-
-    for (Zombie zom : zGroup) {
+    for (int i = zGroup.size() - 1; i >= 0; i--){
+        Zombie zom = zGroup.get(i);
         zom.display();
         zom.update();
+
+
+        for(int j = shooter.peaBalls.size() - 1; j >= 0; j--){
+            PeaBall pea = shooter.peaBalls.get(j);
+
+            if (zom.isHit(pea)){
+                zom.takeDamage(20); ///dmg for pea
+                shooter.peaBalls.remove(j);
+            }
+
+            if (zom.isDead()){
+                zGroup.remove(i);
+            }
+            break;
+        }
     }
 }
 
 void mousePressed(){
+    shooter.shoot(mouseX, mouseY);
     g.click(mouseX, mouseY);
     seed_sunflower.onClick(); 
     seed_peashooter.onClick();
@@ -115,5 +137,7 @@ class grid {
         }
         }
     }
+
+
   
 }
