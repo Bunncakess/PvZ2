@@ -33,13 +33,10 @@ class Zombie {
         else {
             end = true;
         }
-    }
+    } 
 
     void display() {
-        String endcredit = "Zombies have reached the end. You lost. \nPress \"1\" to retry or Press \"2\" to quit";
-        textSize(30);
-        fill(0);
-        textAlign(CENTER);
+        `
 
         if (!end) { // Normal gameplay
             image(zombieIMG, posX, RandomLane);

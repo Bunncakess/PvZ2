@@ -2,6 +2,7 @@
 
 class Sun{
     int xPos, yPos;
+
     PImage chaChing;
     Sun(){
         chaChing = loadImage("Sun.png");
