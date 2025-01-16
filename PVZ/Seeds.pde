@@ -40,8 +40,10 @@ class Seeds {
         if (isMouseOver()) {
             selected = true; 
         }
+
         return selected; 
     }
+
 }
 
   

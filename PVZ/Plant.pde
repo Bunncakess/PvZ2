@@ -1,7 +1,34 @@
-PImage smile, doja, trump; //smile = sunflower, doja = peashooter, trump = wallnut
+
+PImage smile, doja, trump, chaChing; //smile = sunflower, doja = peashooter, trump = wallnut, chaChing = sun(money)
+
+
+class Sun{
+    int xPos, yPos;
+    Sun(){
+        chaChing = loadImage("sun.png");
+    }
+    void display(int x, int y){
+        chaChing.resize(47,74);
+        image (chaChing, 300, y);
+    }
+
+    boolean isMouseOver() {
+        return mouseX > xPos && mouseX < xPos + 48 && mouseY > yPos && mouseY < yPos + 62;
+    }
+    boolean selected = false;
+    int money = 0;
+    boolean onClick() {
+        if (isMouseOver()) {
+            selected = true; 
+        }
+        money++; 
+        
+        return selected; //if sun clicked, money goes up
+
+    }
+} 
+
 class Sunflower{
-
-
     Sunflower(){
         smile = loadImage("SunflowerPlant.png");
     }
@@ -10,6 +37,7 @@ class Sunflower{
         image (smile, x, y);
         
     }
+    
 }
 
 class WallNut{
@@ -21,6 +49,7 @@ class WallNut{
         image (trump, x, y);
         
     }
+    
 }
 
 class PeaShooter {
@@ -36,7 +65,7 @@ class PeaShooter {
     void display(int x, int y) {
         image(doja, x, y);
     }
-
+   
     void shoot(float x, float y) {
         peaBalls.add(new PeaBall(x, y));
     }
@@ -75,3 +104,6 @@ class PeaBall {
         image(burret, posX, posY);
     }
 }
+
+
+//onloy one, sunflower display sun, sun display, lcick

@@ -5,6 +5,7 @@ Sunflower tower;
 PeaShooter arrow;
 WallNut spike;
 PeaShooter shooter;
+Sun bright; 
 
 
 PImage back;
@@ -24,6 +25,7 @@ void setup(){
      tower = new Sunflower();
      arrow = new PeaShooter();
      spike = new WallNut();
+     bright = new Sun();
 }
 
 void draw() {
@@ -36,7 +38,7 @@ void draw() {
     seed_peashooter.displaySeed();
     seed_walnut.displaySeed();
     
-
+    bright.display(200,200);
 
     if (zGroup.size() < 6) { /// ZOM LIMIT
         if(frameCount % 360 == 0){ ///EVERY 6 SECOSNDA
@@ -103,17 +105,20 @@ class grid {
               }
               else if (gridarray[y][x] == true){
               
-              if (seed_sunflower.onClick() == true) {
+              if (seed_sunflower.onClick() == true ) {
                 tower.display((y*70)+220, (x*85)+70);
+                
               }
-              
+             
               if (seed_peashooter.onClick() == true ){
                 arrow.display((y*70)+220, (x*85)+70);
               }
               
-              if (seed_walnut.onClick() == true) {
+              if (seed_walnut.onClick() == true ) {
                 spike.display((y*70)+220, (x*85)+70);
               }
+
+              
               }
   
            rect(xcor, ycor, 70, 85);
