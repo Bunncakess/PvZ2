@@ -1,11 +1,10 @@
 
-PImage smile, doja, trump, chaChing; //smile = sunflower, doja = peashooter, trump = wallnut, chaChing = sun(money)
-
 
 class Sun{
     int xPos, yPos;
+    PImage chaChing;
     Sun(){
-        chaChing = loadImage("sun.png");
+        chaChing = loadImage("Sun.png");
     }
     void display(int x, int y){
         chaChing.resize(47,74);
@@ -29,6 +28,7 @@ class Sun{
 } 
 
 class Sunflower{
+PImage smile; 
     Sunflower(){
         smile = loadImage("SunflowerPlant.png");
     }
@@ -41,6 +41,7 @@ class Sunflower{
 }
 
 class WallNut{
+    PImage trump; 
     WallNut(){
         trump = loadImage("WallNut.png");
     }
@@ -57,7 +58,7 @@ class PeaShooter {
     ArrayList<PeaBall> peaBalls;
 
     PeaShooter() {
-        doja = loadImage("peashooter.png");
+        doja = loadImage("Peashooter.png");
         doja.resize(47, 74);
         peaBalls = new ArrayList<>();
     }

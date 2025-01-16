@@ -105,20 +105,19 @@ class grid {
               }
               else if (gridarray[y][x] == true){
               
-              if (seed_sunflower.onClick() == true ) {
-                tower.display((y*70)+220, (x*85)+70);
-                
+              if (seed_sunflower.onClick() == true /*&& seed_peashooter.onClick() == false || seed_walnut.onClick() == false */) {
+                tower.display((y*70)+220, (x*85)+70);   
+       
               }
-             
-              if (seed_peashooter.onClick() == true ){
+            
+              if (seed_peashooter.onClick() == true  /*&& seed_sunflower.onClick() == false || seed_walnut.onClick() == false*/){
                 arrow.display((y*70)+220, (x*85)+70);
               }
-              
-              if (seed_walnut.onClick() == true ) {
+
+              if (seed_walnut.onClick() == true /*&& seed_sunflower.onClick() == false || seed_peashooter.onClick() == false*/) {
                 spike.display((y*70)+220, (x*85)+70);
               }
 
-              
               }
   
            rect(xcor, ycor, 70, 85);
