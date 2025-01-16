@@ -40,9 +40,12 @@ void draw() {
     
     bright.display(200,200);
 
+    int zomCount = 0;
+
     if (zGroup.size() < 6) { /// ZOM LIMIT
-        if(frameCount % 360 == 0){ ///EVERY 6 SECOSNDA
+        if(frameCount % 1200 == 0){ ///EVERY 6 SECOSNDA 60 = 1
             zGroup.add(new Zombie());
+            zomCount++;
         }
     }
 
