@@ -22,9 +22,7 @@ class Sun{
             selected = true; 
         }
         money++; 
-        
         return selected; //if sun clicked, money goes up
-
     }
 } 
 
