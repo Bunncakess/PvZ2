@@ -47,14 +47,14 @@ class Zombie {
 
         if (end) { // End scene
             text(endcredit, width / 2, height / 2);
-            if (keyPressed && !keyPressedOnce) {
+            if (keyPressed) {
                 if (key == '1') {
                     resetGame();
                 } 
                 else if (key == '2') {
                     exit();
                 }
-                keyPressedOnce = true;
+                
             }
         }
     }
