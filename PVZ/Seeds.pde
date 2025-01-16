@@ -15,11 +15,15 @@ class Seeds {
             seed = loadImage("sunflower_icon.png");
             seed.resize(48,60);
 
-        } else if (seed_name.equals("peashooter_seed")) {
+        } 
+        
+        else if (seed_name.equals("peashooter_seed")) {
             seed = loadImage("peashooter_icon.png");
             seed.resize(48,60);
 
-        } else {
+        } 
+        
+        else {
             seed = loadImage("walnut_icon.png");
             seed.resize(48,60);
 

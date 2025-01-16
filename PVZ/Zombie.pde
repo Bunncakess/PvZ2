@@ -5,7 +5,7 @@ class Zombie {
     int endgoal = 190;
     int hp; // hp for each type.
     float moveX = 0.2; // speed 12
-    float posX = 220;  // width
+    float posX = width;  // pos x = width
     int[] ZombieLanes = {25, 105, 190, 275, 360}; // positions for Y level
     int RandomLane;
     boolean end = false;

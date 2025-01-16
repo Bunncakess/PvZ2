@@ -1,8 +1,4 @@
-float posX = 220;
-class Sun { //not sunflower plant
-
-}
-PImage smile, doja, trump, burret;
+PImage smile, doja, trump, burret; //smile = sunflower, doja = peashooter, trump = wallnut, burret = peaball
 class Sunflower{
 
 
@@ -16,35 +12,6 @@ class Sunflower{
     }
 }
 
-class PeaShooter{ 
-    boolean showBurret = false;
-    PeaShooter(){
-        doja = loadImage("peashooter.png");
-    }
-    void display(int x, int y){
-        doja.resize(47,74);
-        image (doja, x, y);
-        
-    }
-    void shoot(){
-        //if (posX <= 800)
-    }
-
-    void display(){
-        showBurret = true; //allows peaball to show
-        burret = loadImage("PeaBall.png");
-
-    }
-
-    void update(){
-
-    }
-    
-    void ifHit(){
-        showBurret = false; //if comes into contact with zombie, peaBall disappears
-    }
-}
-
 class WallNut{
     WallNut(){
         trump = loadImage("WallNut.png");
@@ -55,31 +22,53 @@ class WallNut{
         
     }
 }
-// //ArrayList<Pea> PeaShooters = new ArrayList<Pea>(); //for unlimited amount to place
 
-// //draw
+class PeaShooter{ 
 
-// class PeaShooter{
-//     int x, y, r;
-//     int dx, dy; //speed
-//     boolean tempcold; //if the ball slows or not
-//     //if see zombie, shoot ball
-//    // if (posX  <= 10)
-//        // pea.shoot;
-    
-//     Pea(int tempx, int tempy, int tempr, boolean tempcold){
-//         x = tempx;
-//         y = tempy;
-//         r = tempr;
+    PeaShooter(){
+        doja = loadImage("peashooter.png");
+    }
 
-//         freeze = tempcold;
-//     }
-
-//     void shoot(){
-//         y = y + dy; 
+    void display(int x, int y){
+        doja.resize(47,74);
+        image (doja, x, y);
         
-//     }
+    }
+    void shoot(){
+        // PeaBall newPea = new PeaBall();
+        // peaBalls.add(newPea);
+    }
 
-// }
+    void update(){
+        // for (int i = peaBalls.size() - 1; i >= 0; i--) {
+        //     PeaBall pea = peaBalls.get(i);
+        //     pea.update(); 
+        //     pea.display(); 
+
+            
+        //     if (pea.posX > width) {
+        //         peaBalls.remove(i);
+        //     }
+        // }
+    }
+}
 
 
+class PeaBall{
+
+    // float speed = 5;    // Speed of the pea
+    // int damage = 50;    // Damage dealt by the pea ball
+
+    PeaBall(){
+        burret = loadImage("PeaBall.png");
+    }
+
+    void update() {
+        // posX += speed;  // Move the pea ball to the right
+    }
+
+    void display(int x, int y) {
+        image(burret, x, y); // Display the pea ball (use burret image)
+    }
+
+}
