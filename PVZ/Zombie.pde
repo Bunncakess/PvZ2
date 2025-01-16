@@ -1,28 +1,26 @@
-PImage nzombie;
 
 class Zombie {
+    PImage zombieIMG;
     int ztype; // 1 = normal 2 = cone 3 = bucket
     int endgoal = 190;
+    int hp; // hp for each type.
     float moveX = 0.2; // speed 12
-    float posX = 220; // position for X level; 875
+    float posX = 220;  // width
     int[] ZombieLanes = {25, 105, 190, 275, 360}; // positions for Y level
     int RandomLane;
     boolean end = false;
-    boolean keyPressedOnce = false;
-    boolean hit = false;
 
-    // Constructor
-    
     Zombie() {
         ztype = (int) random(1, 4);
         if (ztype == 1) {
-            nzombie = loadImage("Zombie1.png");
-        } 
-        else if (ztype == 2) {
-            nzombie = loadImage("Zombie2.png");
-        } 
-        else {
-            nzombie = loadImage("Zombie3.png");
+            zombieIMG = loadImage("Zombie1.png");
+            hp = 100;
+        } else if (ztype == 2) {
+            zombieIMG = loadImage("Zombie2.png");
+            hp = 200;
+        } else {
+            zombieIMG = loadImage("Zombie3.png");
+            hp = 300;
         }
 
         RandomLane = ZombieLanes[int(random(ZombieLanes.length))]; // randomize lanes
@@ -30,11 +28,9 @@ class Zombie {
 
     void update() {
         if (posX > endgoal) {
-            //delay(1000);
             posX -= moveX;
         } 
         else {
-            //delay(2000);
             end = true;
         }
     }
@@ -46,7 +42,7 @@ class Zombie {
         textAlign(CENTER);
 
         if (!end) { // Normal gameplay
-            image(nzombie, posX, RandomLane);
+            image(zombieIMG, posX, RandomLane);
         }
 
         if (end) { // End scene
@@ -69,20 +65,17 @@ class Zombie {
         RandomLane = ZombieLanes[int(random(ZombieLanes.length))];
     }
 
-    void keyReleased() {
-        keyPressedOnce = false; // Reset the flag when the key is released
-    }
 
-    void ifhit(){
-        if (!hit){
-            //cotinue game;
-        }
-        else{
-           // remove zombie from array
-        }
-    }
+    // void takeDamage(){
+    //     hp -= damage;
+    //     if (hp <= 0){
+    //         end = true;
+    //     }
 
-    void numberedzombie(){
-        //for (zombie that is down in lane 1 must be removed from the array not lane2 zombie who is full hp)
-    }
+    // }
+
+    // boolean isDeadD(){
+    //     return hp <= 0;
+    // }
+
 }

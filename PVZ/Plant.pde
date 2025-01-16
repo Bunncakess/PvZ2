@@ -19,7 +19,7 @@ class Sunflower{
 class PeaShooter{ 
     boolean showBurret = false;
     PeaShooter(){
-        doja = loadImage("Peashooter.png");
+        doja = loadImage("peashooter.png");
     }
     void display(int x, int y){
         doja.resize(47,74);
