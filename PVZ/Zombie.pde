@@ -5,7 +5,7 @@ class Zombie {
     int endgoal = 190;
     int hp; // hp for each type.
     float moveX = 0.2; // speed 12
-    float posX = width;  // pos x = width
+    float posX = width;  // pos x = width; starting position for zombies
     int[] ZombieLanes = {25, 105, 190, 275, 360}; // positions for Y level
     int RandomLane;
     boolean end = false;
@@ -29,14 +29,17 @@ class Zombie {
     void update() {
         if (posX > endgoal) {
             posX -= moveX;
-        } 
-        else {
+        }
+        else{
             end = true;
         }
     } 
 
     void display() {
-        `
+        String endcredit = "Zombies have reached the end. You lost. \nPress \"1\" to retry or Press \"2\" to quit";
+        textSize(30);
+        fill(0);
+        textAlign(CENTER);
 
         if (!end) { // Normal gameplay
             image(zombieIMG, posX, RandomLane);
@@ -73,8 +76,6 @@ class Zombie {
 
     boolean isHit(PeaBall pea){
         return (pea.posX > posX && pea.posX < posX + zombieIMG.width && pea.posY > RandomLane && pea.posY < RandomLane + zombieIMG.height);
-    
-    
     }
 
 }

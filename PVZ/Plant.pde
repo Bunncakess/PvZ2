@@ -1,33 +1,61 @@
 
+int[] lanes = {105, 190, 275, 360, 445}; // positions for Y level
 
 class Sun{
-    int xPos, yPos;
-
     PImage chaChing;
-    Sun(){
-        chaChing = loadImage("Sun.png");
+    float x, y;          // Position of the sun
+    float speed;         // Falling speed
+    boolean collected;   // To track if the sun is collected
+    PImage sunImage;     // Image of the sun
+    int tall = lanes[int(random(lanes.length))];
+    float spawnTime;
+    float duration = 7500; ///every 1000 is 1 sec; the lifespan of the sun
+    int value = 2; //SUN VALUE
+
+    Sun(float startX, float startY) {
+        x = startX;
+        y = startY;
+        speed = 0.5;       // Default falling speed
+        collected = false;
+        sunImage = loadImage("Sun.png"); // Make sure "sun.png" is in the data folder
+        spawnTime = millis();
+        
     }
-    void display(int x, int y){
-        chaChing.resize(47,74);
-        image (chaChing, 300, y);
+
+    void display() {
+        if (!collected) {
+            image(sunImage, x, y, 40, 40); // the sun image
+        }
+    }
+
+    void update() {
+        if (!collected) {
+            y += speed; // Move the sun downward
+            if (y > tall) {
+                y = tall;
+                
+            }
+
+        if (millis() - spawnTime >= duration) {
+            collected = true; // Mark the sun as collected after 5 seconds
+            }
+        }
     }
 
     boolean isMouseOver() {
-        return mouseX > xPos && mouseX < xPos + 48 && mouseY > yPos && mouseY < yPos + 62;
+        return mouseX > x && mouseX < x + 40 && mouseY > y && mouseY < y + 40;
     }
-    boolean selected = false;
-    int money = 0;
-    boolean onClick() {
-        if (isMouseOver()) {
-            selected = true; 
+
+    void collect() {
+        if (isMouseOver() && mousePressed && !collected) {
+            collected = true;
+            println("Sun collected!");
         }
-        money++; 
-        return selected; //if sun clicked, money goes up
     }
-} 
+}
 
 class Sunflower{
-PImage smile; 
+    PImage smile; 
     Sunflower(){
         smile = loadImage("SunflowerPlant.png");
     }
@@ -57,7 +85,7 @@ class PeaShooter {
     ArrayList<PeaBall> peaBalls;
 
     PeaShooter() {
-        doja = loadImage("Peashooter.png");
+        doja = loadImage("peashooter.png");
         doja.resize(47, 74);
         peaBalls = new ArrayList<>();
     }
@@ -104,6 +132,4 @@ class PeaBall {
         image(burret, posX, posY);
     }
 }
-
-
-//onloy one, sunflower display sun, sun display, lcick
+}
