@@ -1,5 +1,5 @@
-
 PImage seed;
+
 class Seeds {
     String seed_name;
     int xPos = 20; // X position of seeds
@@ -47,4 +47,6 @@ class Seeds {
     }
 
 }
+
+  
 

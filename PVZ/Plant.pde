@@ -1,8 +1,7 @@
 
 int[] lanes = {105, 190, 275, 360, 445}; // positions for Y level
 
-class Sun{
-    PImage chaChing;
+class Sun {
     float x, y;          // Position of the sun
     float speed;         // Falling speed
     boolean collected;   // To track if the sun is collected
@@ -11,6 +10,8 @@ class Sun{
     float spawnTime;
     float duration = 7500; ///every 1000 is 1 sec; the lifespan of the sun
     int value = 2; //SUN VALUE
+
+
 
     Sun(float startX, float startY) {
         x = startX;
@@ -25,6 +26,8 @@ class Sun{
     void display() {
         if (!collected) {
             image(sunImage, x, y, 40, 40); // the sun image
+
+
         }
     }
 
@@ -132,4 +135,4 @@ class PeaBall {
         image(burret, posX, posY);
     }
 }
-}
+

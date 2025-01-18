@@ -1,4 +1,4 @@
-
+//update
 class Zombie {
     PImage zombieIMG;
     int ztype; // 1 = normal 2 = cone 3 = bucket
@@ -33,38 +33,11 @@ class Zombie {
         else{
             end = true;
         }
-    } 
+    }
 
     void display() {
-        String endcredit = "Zombies have reached the end. You lost. \nPress \"1\" to retry or Press \"2\" to quit";
-        textSize(30);
-        fill(0);
-        textAlign(CENTER);
-
-        if (!end) { // Normal gameplay
-            image(zombieIMG, posX, RandomLane);
-        }
-
-        if (end) { // End scene
-            text(endcredit, width / 2, height / 2);
-            if (keyPressed) {
-                if (key == '1') {
-                    resetGame();
-                } 
-                else if (key == '2') {
-                    exit();
-                }
-                
-            }
-        }
-    }
-
-    void resetGame() {
-        end = false;
-        posX = 875;
-        RandomLane = ZombieLanes[int(random(ZombieLanes.length))];
-    }
-
+        image(zombieIMG, posX, RandomLane);
+    }   
 
     void takeDamage(int damage){
         hp -= damage;
@@ -79,3 +52,4 @@ class Zombie {
     }
 
 }
+

@@ -1,11 +1,10 @@
 ArrayList<Zombie> zGroup = new ArrayList<Zombie>();
 ArrayList<Sun> suns = new ArrayList<Sun>();
-ArrayList<Sunflower> smileList = new ArrayList<Sunflower>();
 Zombie zomzom;
 Seeds seed_sunflower, seed_peashooter, seed_walnut;
 Sunflower tower;
-PeaShooter shoot;
-WallNut wall;
+PeaShooter arrow;
+WallNut spike;
 PeaShooter shooter;
 Sun bright;
 int zomLimit = 6; //how many zombies can appear in the screen 
@@ -18,7 +17,6 @@ int sunFrequency = 300; /// every 60 = 1 sec
 int sunHold = 10; ///how many suns the player can hold
 PImage back;
 grid g;
-
 
 void setup(){
      size(900, 514);
@@ -33,8 +31,8 @@ void setup(){
      seed_walnut = new Seeds("walnut_seed", 5);
 
      tower = new Sunflower();
-     shoot = new PeaShooter();
-     wall = new WallNut();
+     arrow = new PeaShooter();
+     spike = new WallNut();
 }
 
 void draw() {
@@ -99,7 +97,6 @@ void draw() {
         zGroup.clear();
         noLoop();
     }
-
 }
 
 boolean isGameOver() {
@@ -185,7 +182,7 @@ void sunCounter(){
 
 class grid {
     int ROWS, COLS;
-    private boolean taken;
+    
     boolean[][] gridarray;
     // constructor
     grid(int tempr, int tempc){
@@ -204,7 +201,6 @@ class grid {
         
       int xcor = 220;
       int ycor = 70;
-
       for (int y = 0; y < ROWS; y++){
         for (int x = 0; x < COLS; x++ ){
               if (gridarray[y][x] == false){
@@ -242,21 +238,13 @@ class grid {
 
         if (gridarray[x][y]== false){
             gridarray[x][y] = true;
-            boolean taken = true;
-            System.out.println(taken);
         }
         else if  (gridarray[x][y]== true) {
             gridarray[x][y] = false;
-            boolean taken = false;
-            System.out.println(taken);
         }
         }
     }
 
 
-
   
 }
-
-//place using keys if a variable is not the answer then dont change it 
-//if the nunmber is equal to this then place that 
