@@ -99,6 +99,7 @@ void draw() {
     }
 }
 
+
 boolean isGameOver() {
     for (Zombie zom : zGroup) {
         if (zom.end) {
@@ -107,6 +108,7 @@ boolean isGameOver() {
     }
     return false;
 }
+
 
 boolean isGameWinning(){
     if(zomCount >= zomKills){
@@ -208,7 +210,7 @@ class grid {
               }
               else if (gridarray[y][x] == true){
             tower.display((y*70)+220, (x*85)+70);
-              fill(0,0,0,50);
+              fill(0,0,0,0);
               
             //   if (seed_sunflower.onClick() == true /*&& seed_peashooter.onClick() == false || seed_walnut.onClick() == false */) {
             //     tower.display((y*70)+220, (x*85)+70);   
