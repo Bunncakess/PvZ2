@@ -207,7 +207,8 @@ class grid {
               fill(0, 0, 0, 0);
               }
               else if (gridarray[y][x] == true){
-              fill(0, 0, 0, 50);
+            tower.display((y*70)+220, (x*85)+70);
+              fill(0,0,0,50);
               
             //   if (seed_sunflower.onClick() == true /*&& seed_peashooter.onClick() == false || seed_walnut.onClick() == false */) {
             //     tower.display((y*70)+220, (x*85)+70);   
@@ -237,7 +238,7 @@ class grid {
         int x = (mx - 220) / 70;
         int y = (my - 70) / 85;
 
-        if (gridarray[x][y]== false){
+        if (gridarray[x][y]== false && !(seed_sunflower.onClick())){
             gridarray[x][y] = true;
         }
         else if  (gridarray[x][y]== true) {
