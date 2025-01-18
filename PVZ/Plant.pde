@@ -59,38 +59,63 @@ class Sun {
 
 class Sunflower{
     PImage smile; 
+    int hp;
+    int sunflowerGeneration = 300; //The rate of suns generating from sunflower
+
     Sunflower(){
         smile = loadImage("SunflowerPlant.png");
+        hp = 25; //HP FOR SUN
     }
     void display(int x, int y){
         smile.resize(47,74);
         image (smile, x, y);
         
     }
-    
+
+    void takeDamage(int damage) {
+        hp -= damage;
+        if (hp <= 0) {
+            // Handle destruction of the sunflower (e.g., remove from grid)
+            println("Sunflower destroyed!");
+        }
+    }
 }
 
 class WallNut{
     PImage trump; 
+    int hp;
+
     WallNut(){
         trump = loadImage("WallNut.png");
+        hp = 100;
     }
+
     void display(int x, int y){
         trump.resize(47,74);
         image (trump, x, y);
         
     }
-    
+
+    void takeDamage(int damage) {
+        hp -= damage;
+        if (hp <= 0) {
+            // Handle destruction of the WallNut (e.g., remove from grid)
+            println("WallNut destroyed!");
+        }
+    }
 }
 
 class PeaShooter {
     PImage doja;
     ArrayList<PeaBall> peaBalls;
+    int shootFrequency = 120;
+    int hp;
 
     PeaShooter() {
         doja = loadImage("peashooter.png");
         doja.resize(47, 74);
         peaBalls = new ArrayList<>();
+        hp = 50;
     }
 
     void display(int x, int y) {
@@ -102,6 +127,15 @@ class PeaShooter {
     }
 
     void update() {
+
+        if (frameCount % shootFrequency == 0) { 
+            shoot(200.0, 105.0); 
+            shoot(200.0, 190.0); 
+            shoot(200.0, 275.0); 
+            shoot(200.0, 360.0); 
+            shoot(200.0, 445.0); 
+        }
+
         for (int i = peaBalls.size() - 1; i >= 0; i--) {
             PeaBall pea = peaBalls.get(i);
             pea.update();
@@ -110,6 +144,14 @@ class PeaShooter {
             if (pea.posX > width) { 
                 peaBalls.remove(i);
             }
+        }
+    }
+
+    void takeDamage(int damage) {
+        hp -= damage;
+        if (hp <= 0) {
+            // Handle destruction of the PeaShooter (e.g., remove from grid)
+            println("PeaShooter destroyed!");
         }
     }
 }

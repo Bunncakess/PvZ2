@@ -1,63 +1,74 @@
+//Arrays
 ArrayList<Zombie> zGroup = new ArrayList<Zombie>();
 ArrayList<Sun> suns = new ArrayList<Sun>();
-Zombie zomzom;
+
+//Class Declarations
 Seeds seed_sunflower, seed_peashooter, seed_walnut;
-Sunflower tower;
-PeaShooter arrow;
-WallNut spike;
+Zombie zomzom;
+Sunflower flower;
+WallNut wall;
 PeaShooter shooter;
-Sun bright;
-int zomLimit = 6; //how many zombies can appear in the screen 
-int zomCount;
-int zomKills = 5; ///need about this many zombie kills to win the game
-int pDMG = 20; ///peashooter's dmg
-int zomFrequency = 60; /// Every 60 = 1 second
-int sunCount = 0;
-int sunFrequency = 300; /// every 60 = 1 sec
-int sunHold = 10; ///how many suns the player can hold
-PImage back;
+Shovel shovel;
 grid g;
+
+////////ADJUSTING VARIABLES//////////
+
+//Zombies Variables
+int zomLimit = 6; //How many zombies can appear in the screen 
+int zomCount = 0; //Counter for how many zombies have been killed
+int zomKills = 5; //Need about this many zombie kills to win the game
+int zomFrequency = 300; //The timer for when Zombies generate. Every 60 = 1 second
+    
+//Background Sun Variables
+int sunCount = 0; //Counter for how many Suns the player has held.
+int sunFrequency = 300; //The timer for when suns generate. Every 60 = 1 second
+int sunHold = 10; //Threshold for how many Suns the player can hold.
+
+//PeaBall Variable
+int pDMG = 20; //The Peaball's DMG to the Zombie's HP.
+
+PImage back; //Background Image
 
 void setup(){
      size(900, 514);
      g = new grid(9, 5);
      back = loadImage("Background1.png");
-     zomzom = new Zombie();
-     shooter = new PeaShooter();
 
 
-     seed_sunflower = new Seeds("sunflower_seed", 1);
-     seed_peashooter = new Seeds("peashooter_seed", 3);
-     seed_walnut = new Seeds("walnut_seed", 5);
+     zomzom = new Zombie(); // Zombie Class
+     shooter = new PeaShooter(); // PeaShooter Class
+     flower = new Sunflower(); // Sunflower Class
+     wall = new WallNut(); // WallNut Class
+     shovel = new Shovel(); //Shovel Class
 
-     tower = new Sunflower();
-     arrow = new PeaShooter();
-     spike = new WallNut();
+
+     seed_sunflower = new Seeds("sunflower_seed", 1); // Sunflower Icon
+     seed_peashooter = new Seeds("peashooter_seed", 3); // PeaShooter Icon
+     seed_walnut = new Seeds("walnut_seed", 5); //Wallnut Icon
 }
 
 void draw() {
     image(back, 0, 0);
     g.displayGrid();
     shooter.update();
-
+    sunCounter();
     generateSun();
     seed_sunflower.displaySeed();
     seed_peashooter.displaySeed();
     seed_walnut.displaySeed();
+    shovel.displayShovel();
     
     for (int i = suns.size() - 1; i >= 0; i--) {
         Sun sun = suns.get(i);
         sun.update();
         sun.display();
         if (sun.collected) {
-            suns.remove(i); // Remove collected suns
+            suns.remove(i);
         }
     }
 
-    sunCounter();
-
     if (zGroup.size() < zomLimit) { 
-        if(frameCount % zomFrequency == 0){ ///every 60 = 1 MUYST CHANGE
+        if(frameCount % zomFrequency == 0){ 
             zGroup.add(new Zombie());
         }
     }
@@ -99,8 +110,23 @@ void draw() {
     }
 }
 
+/////////////////////METHODS////////////////////
 
-boolean isGameOver() {
+void generateSun() { //Generate background Sun periodically.
+    float randomX = random(230, width - 100);
+    if (frameCount % sunFrequency == 0){
+        suns.add(new Sun(randomX, 0)); 
+    }
+}
+
+void sunCounter(){ //A counter for how many suns the player collected.
+    textSize(40);
+    fill(0);
+    textAlign(LEFT);
+    text("Suns: " + sunCount, 20, height - 20); 
+}
+
+boolean isGameOver() { //Checks if the game is over when zombies have reached the house.
     for (Zombie zom : zGroup) {
         if (zom.end) {
             return true;
@@ -110,14 +136,14 @@ boolean isGameOver() {
 }
 
 
-boolean isGameWinning(){
+boolean isGameWinning(){ //Checks if the game is over when the player killed enough zombies.
     if(zomCount >= zomKills){
         return true;
     }
     return false;
 }
 
-void WinningCredit(){
+void WinningCredit(){ //Displays the Winning Credits to the player if they killed enough.
     String PlayerWins = "You have killed enough zombies to last you a few days\nGood Job!";
     textSize(30);
     fill(0);
@@ -125,7 +151,7 @@ void WinningCredit(){
     text(PlayerWins, width / 2, height / 2);
 }
 
-void EndCredit() {
+void EndCredit() { //Displays the Losing Credits to the Player if the Zombies reached the House before they killed enough zombies.
     String ZombieWins = "Zombies have reached the end. You lost. \nPress \"R\" to restart or Press \"Q\" to end the game.";
     textSize(30);
     fill(0);
@@ -133,14 +159,14 @@ void EndCredit() {
     text(ZombieWins, width / 2, height / 2);
 }
 
-void restartGame() {
-    zGroup.clear();   ////REINTIALIZED ALL VALUES/COOUNTERS
+void restartGame() { //Reinitialized all counters/values when the game is lost or won.
+    zGroup.clear();   
     suns.clear();   
     zomCount = 0;   
     loop();         
 }
 
-void keyPressed(){
+void keyPressed(){ //The option for the player to choose to restart or quit the game.
     if (key == 'r' || key == 'R') { // Restart the game.
         restartGame();
     } 
@@ -151,35 +177,31 @@ void keyPressed(){
 }
 
 void mousePressed(){
-    shooter.shoot(mouseX, mouseY);
     g.click(mouseX, mouseY);
     seed_sunflower.onClick(); 
     seed_peashooter.onClick();
     seed_walnut.onClick();
+    shovel.onClick();
+
     for (Sun sun : suns) {
         sun.collect();
-        if (sun.collected && sunCount < sunHold){ ////limit sun hold
+        if (sun.collected && sunCount < sunHold){ //limit sun hold
             sunCount += sun.value;
             if (sun.collected && sunCount > sunHold){ /// if over limit set to limit
-            sunCount = 10;
+            sunCount = sunHold;
             }
+
         }
+        
+    }
+    // Remove plants if shovel is selected and clicked on a grid
+    if (shovel.isSelected()) {
+        g.removePlant(mouseX, mouseY); // Add a method in grid class to handle plant removal
+        shovel.selected = false; // Deselect shovel after use
     }
 }
 
-void generateSun() {
-    float randomX = random(230, width - 100);
-    if (frameCount % sunFrequency == 0){// Suns fall from the top every 5 seconds
-        suns.add(new Sun(randomX, 0)); 
-    }
-}
 
-void sunCounter(){
-    textSize(40);
-    fill(0);
-    textAlign(LEFT);
-    text("Suns: " + sunCount, 20, height - 20); 
-}
 
 
 class grid {
@@ -209,23 +231,9 @@ class grid {
               fill(0, 0, 0, 0);
               }
               else if (gridarray[y][x] == true){
-            tower.display((y*70)+220, (x*85)+70);
-              fill(0,0,0,0);
-              
-            //   if (seed_sunflower.onClick() == true /*&& seed_peashooter.onClick() == false || seed_walnut.onClick() == false */) {
-            //     tower.display((y*70)+220, (x*85)+70);   
-       
-            //   }
-            
-            //   if (seed_peashooter.onClick() == true  /*&& seed_sunflower.onClick() == false || seed_walnut.onClick() == false*/){
-            //     arrow.display((y*70)+220, (x*85)+70);
-            //   }
-
-            //   if (seed_walnut.onClick() == true /*&& seed_sunflower.onClick() == false || seed_peashooter.onClick() == false*/) {
-            //     spike.display((y*70)+220, (x*85)+70);
-            //   }
-
-              }
+                flower.display((y*70)+220, (x*85)+70);
+                fill(0,0,0,0);
+                }
   
            rect(xcor, ycor, 70, 85);
            ycor = ycor + 85;
@@ -237,7 +245,7 @@ class grid {
 
     void click(int mx, int my){
         if (mx > 220 && mx < 850 && my > 70 && my < 495){ 
-        int x = (mx - 220) / 70;
+            int x = (mx - 220) / 70;
         int y = (my - 70) / 85;
 
         if (gridarray[x][y]== false && !(seed_sunflower.onClick())){
@@ -248,7 +256,16 @@ class grid {
         }
         }
     }
+    void removePlant(int mx, int my) {
+        if (mx > 220 && mx < 850 && my > 70 && my < 495) { 
+            int x = (mx - 220) / 70;
+            int y = (my - 70) / 85;
 
-
-  
+            if (gridarray[x][y]) { // If a plant exists in this grid cell
+                gridarray[x][y] = false; // Remove the plant
+                println("Plant removed at grid: (" + x + ", " + y + ")");
+                shovel.selected = false; // Deselect shovel after removing the plant
+            }
+        }
+    }
 }

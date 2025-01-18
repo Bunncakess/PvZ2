@@ -5,6 +5,7 @@ class Seeds {
     int xPos = 20; // X position of seeds
     int yPos;      // Y position of the seed
     boolean selected = false; // Tracks if the seed is selected
+    
 
     Seeds(String temp_seed_name, int positionIndex) {
         seed_name = temp_seed_name;
@@ -15,10 +16,12 @@ class Seeds {
         if (seed_name.equals("sunflower_seed")) {
             seed = loadImage("sunflower_icon.png");
             seed.resize(48, 60);
-        } else if (seed_name.equals("peashooter_seed")) {
+        } 
+        else if (seed_name.equals("peashooter_seed")) {
             seed = loadImage("peashooter_icon.png");
             seed.resize(48, 60);
-        } else {
+        } 
+        else {
             seed = loadImage("walnut_icon.png");
             seed.resize(48, 60);
         }
@@ -40,9 +43,10 @@ class Seeds {
     boolean onClick() {
         if (isMouseOver()) {
             selected = true; // Mark this seed as selected
-            println(seed_name + " selected!");
+            println(seed_name + " Yes!");
         } else {
             selected = false; // Deselect if clicked elsewhere
+            println(seed_name + "No?");
         }
         return selected;
     }
