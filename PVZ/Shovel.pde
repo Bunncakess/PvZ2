@@ -27,11 +27,11 @@ class Shovel { //ABANDONED
     void onClick() {
         if (isMouseOver() && mousePressed) {
             selected = true;
-            println("Shovel selected: " + selected);
+            // println("Shovel selected: " + selected);
         }
         else{
             selected = false;
-            println("Shovel selected: " + selected);
+            // println("Shovel selected: " + selected);
         }
     }
 

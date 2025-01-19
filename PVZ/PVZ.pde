@@ -28,6 +28,7 @@ int sunHold = 10; //Threshold for how many Suns the player can hold.
 int pDMG = 20; //The Peaball's DMG to the Zombie's HP.
 
 PImage back; //Background Image
+int currentFrame = frameCount;
 
 void setup(){
      size(900, 514);
@@ -50,7 +51,7 @@ void setup(){
 void draw() {
     image(back, 0, 0);
     g.displayGrid();
-    shooter.update();
+    shooter.update(currentFrame);
     sunCounter();
     generateSun();
     seed_sunflower.displaySeed();
@@ -61,6 +62,16 @@ void draw() {
     displaySunflowerCost();
     displayWalnutCost();
     
+
+
+    for (int y = 0; y < g.ROWS; y++) {
+        for (int x = 0; x < g.COLS; x++) {
+            if (g.gridarray[y][x] && g.peashooters[y][x] != null) {
+                g.peashooters[y][x].update(currentFrame);
+            }
+        }
+    }
+
     for (int i = suns.size() - 1; i >= 0; i--) {
         Sun sun = suns.get(i);
         sun.update();
@@ -77,27 +88,34 @@ void draw() {
     }
 
 
-    for (int i = zGroup.size() - 1; i >= 0; i--){
+    for (int i = zGroup.size() - 1; i >= 0; i--) {
         Zombie zom = zGroup.get(i);
         zom.display();
         zom.update();
 
+        // Check each PeaShooter's peaBalls for collision
+        for (int y = 0; y < g.ROWS; y++) {
+            for (int x = 0; x < g.COLS; x++) {
+                if (g.peashooters[y][x] != null) {
+                    ArrayList<PeaBall> balls = g.peashooters[y][x].peaBalls;
 
-        for(int j = shooter.peaBalls.size() - 1; j >= 0; j--){
-            PeaBall pea = shooter.peaBalls.get(j);
+                    for (int j = balls.size() - 1; j >= 0; j--) {
+                        PeaBall pea = balls.get(j);
 
-            if (zom.isHit(pea)){
-                zom.takeDamage(pDMG);
-                shooter.peaBalls.remove(j);
+                        if (zom.isHit(pea)) {
+                            zom.takeDamage(pDMG);
+                            balls.remove(j); // Remove the PeaBall after hitting a zombie
+                        }
+                    }
+                }
             }
-
-            if (zom.isDead()){
-                zGroup.remove(i);
-                zomCount++;
-            }
-            break;
         }
+
+    if (zom.isDead()) {
+        zGroup.remove(i);
+        zomCount++;
     }
+}
 
     if (isGameOver()) {
         EndCredit();
@@ -220,10 +238,10 @@ void mousePressed(){
         
     }
     // Remove plants if shovel is selected and clicked on a grid
-    if (shovel.isSelected()) {
-        g.removePlant(mouseX, mouseY); // Add a method in grid class to handle plant removal
-        shovel.selected = false; // Deselect shovel after use
-    }
+    // if (shovel.isSelected()) {
+    //     g.removePlant(mouseX, mouseY); // Add a method in grid class to handle plant removal
+    //     shovel.selected = false; // Deselect shovel after use
+    // }
 }
 
 
@@ -231,68 +249,79 @@ void mousePressed(){
 
 class grid {
     int ROWS, COLS;
-    
-    boolean[][] gridarray;
-    // constructor
-    grid(int tempr, int tempc){
+    PeaShooter[][] peashooters; // Array to hold Peashooter objects
+    boolean[][] gridarray;      // Grid to track where plants are placed
+
+    // Constructor
+    grid(int tempr, int tempc) {
         ROWS = tempr;
         COLS = tempc;
         gridarray = new boolean[ROWS][COLS];
-        for (int y = 0; y < ROWS; y++){
-            for (int x = 0; x < COLS; x++ ){
-                gridarray[y][x] = false;
+        peashooters = new PeaShooter[ROWS][COLS]; // Initialize Peashooter array
+        
+        for (int y = 0; y < ROWS; y++) {
+            for (int x = 0; x < COLS; x++) {
+                gridarray[y][x] = false; // No plants by default
+                peashooters[y][x] = null; // No Peashooters initially
             }
         }
     }
-    
-    
-    void displayGrid(){
+
+    // Display the grid and Peashooters
+    void displayGrid() {
+        int xcor = 220;
+        int ycor = 70;
         
-      int xcor = 220;
-      int ycor = 70;
-      for (int y = 0; y < ROWS; y++){
-        for (int x = 0; x < COLS; x++ ){
-              if (gridarray[y][x] == false){
-              fill(0, 0, 0, 0);
-              }
-              else if (gridarray[y][x] == true){
-                shooter.display((y*70)+220, (x*85)+70);
-                if(frameCount%300 == 0){
-                    shooter.shoot((y*70)+240, (x*85)+80);
+        for (int y = 0; y < ROWS; y++) {
+            for (int x = 0; x < COLS; x++) {
+                // Check bounds before using x and y indices
+                if (y < ROWS && x < COLS) {
+                    if (gridarray[y][x] && peashooters[y][x] != null) {
+                        // Display Peashooter and make it shoot
+                        peashooters[y][x].display((x * 70) + 220, (y * 85) + 70); // Display Peashooter
+                        peashooters[y][x].shoot((x * 70) + 240, (y * 85) + 80); // Peashooter shooting
+                    }
                 }
-                fill(0,0,0,0);
-                }
-  
-           rect(xcor, ycor, 70, 85);
-           ycor = ycor + 85;
+
+                // Make the grid cells transparent
+                noFill(); // Ensures no background color for the grid cell
+                stroke(0, 0, 0, 0); // No stroke (grid lines) - to make them transparent
+                rect(xcor, ycor, 70, 85); // Draw an empty transparent grid cell
+
+                ycor += 85; // Adjust vertical position for the next row
+            }
+
+            xcor += 70; 
+            ycor = 70; 
         }
-           xcor = xcor + 70;
-           ycor = 70;
-      }
     }
 
-    void click(int mx, int my){
-        if (mx > 220 && mx < 850 && my > 70 && my < 495){ 
-            int x = (mx - 220) / 70;
-        int y = (my - 70) / 85;
-
-        if (gridarray[x][y]== false && !(seed_sunflower.onClick(sunCount))){
-            gridarray[x][y] = true;
-        }
-        else if  (gridarray[x][y]== true) {
-            gridarray[x][y] = false;
-        }
-        }
-    }
-    void removePlant(int mx, int my) { //ABANDONED
+    // Handle mouse click for placing/removing plants
+    void click(int mx, int my) {
         if (mx > 220 && mx < 850 && my > 70 && my < 495) { 
-            int x = (mx - 220) / 70;
-            int y = (my - 70) / 85;
+            int x = (mx - 220) / 70;  // Get the x index in the grid
+            int y = (my - 70) / 85;   // Get the y index in the grid
 
-            if (gridarray[x][y]) { // If a plant exists in this grid cell
-                gridarray[x][y] = false; // Remove the plant
-                println("Plant removed at grid: (" + x + ", " + y + ")");
-                shovel.selected = false; // Deselect shovel after removing the plant
+            // Ensure the indices are within bounds
+            if (x >= 0 && x < COLS && y >= 0 && y < ROWS) {
+                // Only place Peashooter if selected and enough Suns
+                if (gridarray[y][x] == false && seed_peashooter.selected) {
+                    println("Checking suns: " + sunCount + " (needs 3)");
+                    if (sunCount >= 3) {
+                        gridarray[y][x] = true;  // Place the Peashooter in the grid
+                        sunCount -= 3;           // Deduct 3 Suns
+                        sunCount = max(sunCount, 0);  // Ensure Sun count doesn't go below 0
+                        peashooters[y][x] = new PeaShooter(); // Create a new Peashooter
+                        println("Peashooter planted! Suns remaining: " + sunCount);
+                    } else {
+                        println("Not enough Suns to plant Peashooter!");
+                    }
+                } else if (gridarray[y][x] == true) {
+                    // If there's already a Peashooter, remove it
+                    gridarray[y][x] = false;
+                    peashooters[y][x] = null; // Remove the Peashooter from the grid
+                    println("Peashooter removed!");
+                }
             }
         }
     }

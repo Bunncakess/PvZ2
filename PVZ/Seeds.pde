@@ -12,16 +12,16 @@ class Seeds { //ABANDONED
     }
 
     void displaySeed() {
-        if (seed_name.equals("sunflower_seed")) {
+        if (seed_name.equals("sunflower_seed")) { //ABANDONED
             seed = loadImage("sunflower_icon.png");
             seed.resize(48, 60);
         } 
-        else if (seed_name.equals("peashooter_seed")) {
+        else if (seed_name.equals("peashooter_seed")) { 
             seed = loadImage("peashooter_icon.png");
             seed.resize(48, 60);
         } 
-        else {
-            seed = loadImage("walnut_icon.png");
+        else { //ABANDONED
+            seed = loadImage("walnut_icon.png"); 
             seed.resize(48, 60);
         }
 
@@ -42,7 +42,7 @@ class Seeds { //ABANDONED
     boolean onClick(int sunCount) { // Pass current Sun count as a parameter
         if (isMouseOver()) {
             selected = true; // Mark this seed as selected
-            println(seed_name + " selected!");
+            // println(seed_name + " selected!");
 
             if (seed_name.equals("peashooter_seed") && sunCount >= 2) {
                 // If Peashooter is selected and player has enough Suns
@@ -56,7 +56,7 @@ class Seeds { //ABANDONED
             }
         } else {
             selected = false; // Deselect if clicked elsewhere
-            println(seed_name + " deselected.");
+            // println(seed_name + " deselected.");
         }
         return false;
     }

@@ -51,7 +51,8 @@ class WallNut{//ABANDONED
 class PeaShooter {
     PImage doja;
     ArrayList<PeaBall> peaBalls;
-    int shootFrequency = 120;
+    int shootFrequency = 120;  // Adjust the frequency as needed
+    int lastShootTime = 0;     // Store the time when it last shot
     int hp;
 
     PeaShooter() {
@@ -64,12 +65,20 @@ class PeaShooter {
     void display(int x, int y) {
         image(doja, x, y);
     }
-   
+
     void shoot(float x, float y) {
-        peaBalls.add(new PeaBall(x, y));
+        if (frameCount % 300 == 0){
+            peaBalls.add(new PeaBall(x, y));  // Add a new PeaBall to the list
+        }
+
     }
 
-    void update() {
+    void update(int currentFrame) {
+        // Peashooter update logic (e.g., shooting, animation, etc.)
+        if (currentFrame - lastShootTime >= shootFrequency) {
+            lastShootTime = currentFrame;  // Update last shoot time
+            shoot(0, 0);  // Call shoot to create a new PeaBall
+        }
 
         for (int i = peaBalls.size() - 1; i >= 0; i--) {
             PeaBall pea = peaBalls.get(i);
@@ -77,7 +86,7 @@ class PeaShooter {
             pea.display();
 
             if (pea.posX > width) { 
-                peaBalls.remove(i);
+                peaBalls.remove(i);  // Remove PeaBall if it goes out of bounds
             }
         }
     }
