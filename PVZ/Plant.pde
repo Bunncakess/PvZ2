@@ -1,28 +1,5 @@
 
 
-class Sunflower{ //ABANDONED
-    PImage smile; 
-    int hp;
-
-
-    Sunflower(){
-        smile = loadImage("SunflowerPlant.png");
-        hp = 25; //HP FOR SUN
-    }
-    void display(int x, int y){
-        smile.resize(47,74);
-        image (smile, x, y);
-        
-    }
-
-    void takeDamage(int damage) {
-        hp -= damage;
-        if (hp <= 0) {
-            // Handle destruction of the sunflower (e.g., remove from grid)
-            println("Sunflower destroyed!");
-        }
-    }
-}
 
 class WallNut{//ABANDONED
     PImage trump; 
@@ -44,6 +21,29 @@ class WallNut{//ABANDONED
         if (hp <= 0) {
             // Handle destruction of the WallNut (e.g., remove from grid)
             println("WallNut destroyed!");
+        }
+    }
+}
+class Sunflower{ //ABANDONED
+    PImage smile; 
+    int hp;
+
+
+    Sunflower(){
+        smile = loadImage("SunflowerPlant.png");
+        hp = 25; //HP FOR SUN
+    }
+    void display(int x, int y){
+        smile.resize(47,74);
+        image (smile, x, y);
+        
+    }
+
+    void takeDamage(int damage) {
+        hp -= damage;
+        if (hp <= 0) {
+            // Handle destruction of the sunflower (e.g., remove from grid)
+            println("Sunflower destroyed!");
         }
     }
 }
