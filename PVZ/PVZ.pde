@@ -95,6 +95,7 @@ void draw() {
             break;
         }
     }
+
     if (isGameOver()) {
         EndCredit();
         suns.clear();
@@ -231,7 +232,10 @@ class grid {
               fill(0, 0, 0, 0);
               }
               else if (gridarray[y][x] == true){
-                flower.display((y*70)+220, (x*85)+70);
+                shooter.display((y*70)+220, (x*85)+70);
+                if(frameCount%300 == 0){
+                shooter.shoot((y*70)+240, (x*85)+80);
+                }
                 fill(0,0,0,0);
                 }
   

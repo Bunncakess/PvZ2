@@ -128,14 +128,6 @@ class PeaShooter {
 
     void update() {
 
-        if (frameCount % shootFrequency == 0) { 
-            shoot(200.0, 105.0); 
-            shoot(200.0, 190.0); 
-            shoot(200.0, 275.0); 
-            shoot(200.0, 360.0); 
-            shoot(200.0, 445.0); 
-        }
-
         for (int i = peaBalls.size() - 1; i >= 0; i--) {
             PeaBall pea = peaBalls.get(i);
             pea.update();
