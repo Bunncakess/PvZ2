@@ -10,7 +10,8 @@ WallNut wall;
 PeaShooter shooter;
 Shovel shovel;
 grid g;
-
+int loadingStartTime = 0;
+boolean isLoading = true; // Variable to track the loading screen state
 ////////ADJUSTING VARIABLES//////////
 
 //Zombies Variables
@@ -33,7 +34,7 @@ void setup(){
      size(900, 514);
      g = new grid(9, 5);
      back = loadImage("Background1.png");
-
+    loadingStartTime = millis();
 
      zomzom = new Zombie(); // Zombie Class
      shooter = new PeaShooter(); // PeaShooter Class
@@ -48,6 +49,21 @@ void setup(){
 }
 
 void draw() {
+
+
+    if (isLoading) {
+        // Display the loading screen
+        background(0); // Set background to black
+        fill(255); // Set text color to white
+        textSize(40);
+        textAlign(CENTER, CENTER);
+        text("Loading... Please Wait", width / 2, height / 2);
+        
+        if (millis() - loadingStartTime >= 2000) {
+      isLoading = false;  // Stop the loading screen after 2 seconds
+    }
+    }
+    else{
     image(back, 0, 0);
     g.displayGrid();
     shooter.update();
@@ -111,7 +127,8 @@ void draw() {
         suns.clear();
         zGroup.clear();
         noLoop();
-    }
+    }}
+
 }
 
 /////////////////////METHODS////////////////////
@@ -198,6 +215,9 @@ void keyPressed(){ //The option for the player to choose to restart or quit the 
     
     else if (key == 'q' || key == 'Q') { // Quit the game.
         exit();
+    }
+    if (isLoading) {
+        isLoading = false; // Set to false to start the game after the loading screen
     }
 }
 
