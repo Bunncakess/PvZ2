@@ -1,53 +1,3 @@
-
-
-class Sunflower{ //ABANDONED
-    PImage smile; 
-    int hp;
-
-
-    Sunflower(){
-        smile = loadImage("SunflowerPlant.png");
-        hp = 25; //HP FOR SUN
-    }
-    void display(int x, int y){
-        smile.resize(47,74);
-        image (smile, x, y);
-        
-    }
-
-    void takeDamage(int damage) {
-        hp -= damage;
-        if (hp <= 0) {
-            // Handle destruction of the sunflower (e.g., remove from grid)
-            println("Sunflower destroyed!");
-        }
-    }
-}
-
-class WallNut{//ABANDONED
-    PImage trump; 
-    int hp;
-
-    WallNut(){
-        trump = loadImage("WallNut.png");
-        hp = 100;
-    }
-
-    void display(int x, int y){
-        trump.resize(47,74);
-        image (trump, x, y);
-        
-    }
-
-    void takeDamage(int damage) {
-        hp -= damage;
-        if (hp <= 0) {
-            // Handle destruction of the WallNut (e.g., remove from grid)
-            println("WallNut destroyed!");
-        }
-    }
-}
-
 class PeaShooter {
     PImage doja;
     ArrayList<PeaBall> peaBalls;
@@ -139,7 +89,7 @@ class Sun {
     float spawnTime;
     float duration = 7500; ///every 1000 is 1 sec; the lifespan of the sun
     int value = 2; //SUN VALUE
-
+    int time_counter = 0;
 
 
     Sun(float startX, float startY) {
@@ -168,8 +118,11 @@ class Sun {
                 
             }
 
-        if (millis() - spawnTime >= duration) {
+        if (y == tall) {
+            time_counter++;
+            if(time_counter == 350){
             collected = true; // Mark the sun as collected after 5 seconds
+            }
             }
         }
     }
@@ -182,6 +135,57 @@ class Sun {
         if (isMouseOver() && mousePressed && !collected) {
             collected = true;
             println("Sun collected!");
+        }
+    }
+}
+
+
+
+
+
+class WallNut{//ABANDONED
+    PImage trump; 
+    int hp;
+
+    WallNut(){
+        trump = loadImage("WallNut.png");
+        hp = 100;
+    }
+
+    void display(int x, int y){
+        trump.resize(47,74);
+        image (trump, x, y);
+        
+    }
+
+    void takeDamage(int damage) {
+        hp -= damage;
+        if (hp <= 0) {
+            // Handle destruction of the WallNut (e.g., remove from grid)
+            println("WallNut destroyed!");
+        }
+    }
+}
+class Sunflower{ //ABANDONED
+    PImage smile; 
+    int hp;
+
+
+    Sunflower(){
+        smile = loadImage("SunflowerPlant.png");
+        hp = 25; //HP FOR SUN
+    }
+    void display(int x, int y){
+        smile.resize(47,74);
+        image (smile, x, y);
+        
+    }
+
+    void takeDamage(int damage) {
+        hp -= damage;
+        if (hp <= 0) {
+            // Handle destruction of the sunflower (e.g., remove from grid)
+            println("Sunflower destroyed!");
         }
     }
 }
