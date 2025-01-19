@@ -254,12 +254,15 @@ class grid {
         for (int x = 0; x < COLS; x++ ){
               if (gridarray[y][x] == false){
               fill(0, 0, 0, 0);
+              stroke(0,0,0,0);
+
               }
               else if (gridarray[y][x] == true){
                 shooter.display((y*70)+220, (x*85)+70);
                 if(frameCount%300 == 0){
                     shooter.shoot((y*70)+240, (x*85)+80);
                 }
+                stroke(0,0,0,0);
                 fill(0,0,0,0);
                 }
   
