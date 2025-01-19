@@ -9,25 +9,32 @@ class Zombie {
     boolean end = false; //Checks if the zombies have reached the End.
     int zomDMG; //Zombie DMG variable for each type of zombie.
     int endgoal = 190; //The end goal for zombies AKA the house.
-    float moveX = 0.2; //The speed of the zombies.
+    float moveX; //The speed of the zombies.
     float posX = width; //The starting position of the zombies
 
 
     PImage zombieIMG; //Zombie Image Variable
 
     Zombie() {
-        ztype = (int) random(1, 4);
-        if (ztype == 1) {
+        ztype = (int )random(1, 4);
+
+        if (ztype == 1) { // Regular Zombie
             zombieIMG = loadImage("Zombie1.png");
-            hp = 100; 
-        } else if (ztype == 2) {
+            hp = 100;
+            moveX = 0.2;
+        } 
+        
+        else if (ztype == 2) { // Conehead Zombie
             zombieIMG = loadImage("Zombie2.png");
             hp = 125;
-        } else {
+            moveX = 0.15; // Slower movement
+        } 
+        
+        else { // Buckethead Zombie
             zombieIMG = loadImage("Zombie3.png");
             hp = 150;
+            moveX = 0.1; // Even slower movement
         }
-
         RandomLane = ZombieLanes[int(random(ZombieLanes.length))]; // randomize lanes
     }
 
@@ -42,9 +49,9 @@ class Zombie {
         }
     }
 
-    void display() { //Displays the image of the Zombie in RandomLanes.
-        image(zombieIMG, posX, RandomLane);
-    }   
+    void display() { 
+        image(zombieIMG, posX, RandomLane); 
+    }
 
     void takeDamage(int damage){ //Loses HP when it is shot by a Peaball/Peashooter.
         hp -= damage;
@@ -55,7 +62,10 @@ class Zombie {
     }
 
     boolean isHit(PeaBall pea){ //Returns true if the peaball collides with the Zombie.
-        return (pea.posX > posX && pea.posX < posX + zombieIMG.width && pea.posY > RandomLane && pea.posY < RandomLane + zombieIMG.height);
+        boolean horizontalCollision = (pea.posX + pea.burret.width >= posX && pea.posX <= posX + zombieIMG.width);
+        boolean verticalCollision = (pea.posY + pea.burret.height >= RandomLane && pea.posY <= RandomLane + zombieIMG.height);
+        
+        return horizontalCollision && verticalCollision;
     }
 
 }

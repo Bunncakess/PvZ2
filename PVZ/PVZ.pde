@@ -57,6 +57,9 @@ void draw() {
     seed_peashooter.displaySeed();
     seed_walnut.displaySeed();
     shovel.displayShovel();
+    displayPeashooterCost();
+    displaySunflowerCost();
+    displayWalnutCost();
     
     for (int i = suns.size() - 1; i >= 0; i--) {
         Sun sun = suns.get(i);
@@ -160,6 +163,27 @@ void EndCredit() { //Displays the Losing Credits to the Player if the Zombies re
     text(ZombieWins, width / 2, height / 2);
 }
 
+void displayPeashooterCost() {
+    fill(255, 255, 0); // Yellow color for the Sun cost display
+    textSize(20);
+    textAlign(LEFT);
+    text("Peashooter: 3 Suns", 20, height - 85);
+}
+
+void displayWalnutCost() {
+    fill(255, 255, 0); // Yellow color for the Sun cost display
+    textSize(20);
+    textAlign(LEFT);
+    text("Walnut: 5 Suns", 20, height - 60);
+}
+
+void displaySunflowerCost() {
+    fill(255, 255, 0); // Yellow color for the Sun cost display
+    textSize(20);
+    textAlign(LEFT);
+    text("Sunflower: 2 Suns", 20, height - 110);
+}
+
 void restartGame() { //Reinitialized all counters/values when the game is lost or won.
     zGroup.clear();   
     suns.clear();   
@@ -179,9 +203,9 @@ void keyPressed(){ //The option for the player to choose to restart or quit the 
 
 void mousePressed(){
     g.click(mouseX, mouseY);
-    seed_sunflower.onClick(); 
-    seed_peashooter.onClick();
-    seed_walnut.onClick();
+    seed_sunflower.onClick(sunCount); 
+    seed_peashooter.onClick(sunCount);
+    seed_walnut.onClick(sunCount);
     shovel.onClick();
 
     for (Sun sun : suns) {
@@ -234,7 +258,7 @@ class grid {
               else if (gridarray[y][x] == true){
                 shooter.display((y*70)+220, (x*85)+70);
                 if(frameCount%300 == 0){
-                shooter.shoot((y*70)+240, (x*85)+80);
+                    shooter.shoot((y*70)+240, (x*85)+80);
                 }
                 fill(0,0,0,0);
                 }

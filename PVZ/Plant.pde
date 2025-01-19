@@ -1,66 +1,9 @@
 
-int[] lanes = {105, 190, 275, 360, 445}; // positions for Y level
-
-class Sun {
-    float x, y;          // Position of the sun
-    float speed;         // Falling speed
-    boolean collected;   // To track if the sun is collected
-    PImage sunImage;     // Image of the sun
-    int tall = lanes[int(random(lanes.length))];
-    float spawnTime;
-    float duration = 7500; ///every 1000 is 1 sec; the lifespan of the sun
-    int value = 2; //SUN VALUE
-
-
-
-    Sun(float startX, float startY) {
-        x = startX;
-        y = startY;
-        speed = 0.5;       // Default falling speed
-        collected = false;
-        sunImage = loadImage("Sun.png"); // Make sure "sun.png" is in the data folder
-        spawnTime = millis();
-        
-    }
-
-    void display() {
-        if (!collected) {
-            image(sunImage, x, y, 40, 40); // the sun image
-
-
-        }
-    }
-
-    void update() {
-        if (!collected) {
-            y += speed; // Move the sun downward
-            if (y > tall) {
-                y = tall;
-                
-            }
-
-        if (millis() - spawnTime >= duration) {
-            collected = true; // Mark the sun as collected after 5 seconds
-            }
-        }
-    }
-
-    boolean isMouseOver() {
-        return mouseX > x && mouseX < x + 40 && mouseY > y && mouseY < y + 40;
-    }
-
-    void collect() {
-        if (isMouseOver() && mousePressed && !collected) {
-            collected = true;
-            println("Sun collected!");
-        }
-    }
-}
 
 class Sunflower{
     PImage smile; 
     int hp;
-    int sunflowerGeneration = 300; //The rate of suns generating from sunflower
+
 
     Sunflower(){
         smile = loadImage("SunflowerPlant.png");
@@ -161,12 +104,77 @@ class PeaBall {
         posY = startY;
     }
 
-    void update() {
-        posX += speed; 
-    }
+void update() {
+    posX += speed; // Move the PeaBall horizontally.
 
+    // After moving, check for collision with all zombies.
+    for (int i = zGroup.size() - 1; i >= 0; i--) {
+        Zombie zom = zGroup.get(i);
+        if (zom.isHit(this)) { // Check if PeaBall hits the Zombie
+            zom.takeDamage(pDMG); // Apply damage
+            shooter.peaBalls.remove(this); // Remove the PeaBall from the list
+            break; // Break after the first collision to prevent multiple hits
+        }
+    }
+}
     void display() {
         image(burret, posX, posY);
     }
 }
 
+class Sun {
+    float x, y;          // Position of the sun
+    float speed;         // Falling speed
+    boolean collected;   // To track if the sun is collected
+    PImage sunImage;     // Image of the sun
+    int[] lanes = {105, 190, 275, 360, 445}; // positions for Y level
+    int tall = lanes[int(random(lanes.length))];
+    float spawnTime;
+    float duration = 7500; ///every 1000 is 1 sec; the lifespan of the sun
+    int value = 2; //SUN VALUE
+
+
+
+    Sun(float startX, float startY) {
+        x = startX;
+        y = startY;
+        speed = 0.5;       // Default falling speed
+        collected = false;
+        sunImage = loadImage("Sun.png"); // Make sure "sun.png" is in the data folder
+        spawnTime = millis();
+        
+    }
+
+    void display() {
+        if (!collected) {
+            image(sunImage, x, y, 40, 40); // the sun image
+
+
+        }
+    }
+
+    void update() {
+        if (!collected) {
+            y += speed; // Move the sun downward
+            if (y > tall) {
+                y = tall;
+                
+            }
+
+        if (millis() - spawnTime >= duration) {
+            collected = true; // Mark the sun as collected after 5 seconds
+            }
+        }
+    }
+
+    boolean isMouseOver() {
+        return mouseX > x && mouseX < x + 40 && mouseY > y && mouseY < y + 40;
+    }
+
+    void collect() {
+        if (isMouseOver() && mousePressed && !collected) {
+            collected = true;
+            println("Sun collected!");
+        }
+    }
+}
