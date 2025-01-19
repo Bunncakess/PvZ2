@@ -130,7 +130,7 @@ class Sun {
     float spawnTime;
     float duration = 7500; ///every 1000 is 1 sec; the lifespan of the sun
     int value = 2; //SUN VALUE
-
+    int time_counter = 0;
 
 
     Sun(float startX, float startY) {
@@ -159,8 +159,11 @@ class Sun {
                 
             }
 
-        if (millis() - spawnTime >= duration) {
+        if (y == tall) {
+            time_counter++;
+            if(time_counter == 350){
             collected = true; // Mark the sun as collected after 5 seconds
+            }
             }
         }
     }

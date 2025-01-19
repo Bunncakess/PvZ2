@@ -59,7 +59,7 @@ void draw() {
         textAlign(CENTER, CENTER);
         text("Loading... Please Wait", width / 2, height / 2);
         
-        if (millis() - loadingStartTime >= 2000) {
+        if (millis() - loadingStartTime >= 4000) {
       isLoading = false;  // Stop the loading screen after 2 seconds
     }
     }
@@ -251,6 +251,7 @@ void mousePressed(){
 
 class grid {
     int ROWS, COLS;
+    int time_counter = 0;
     
     boolean[][] gridarray;
     // constructor
@@ -279,9 +280,11 @@ class grid {
               }
               else if (gridarray[y][x] == true){
                 shooter.display((y*70)+220, (x*85)+70);
-                if(frameCount%300 == 0){
+                if(time_counter%100 == 0){
                     shooter.shoot((y*70)+240, (x*85)+80);
                 }
+                    time_counter++;
+
                 stroke(0,0,0,0);
                 fill(0,0,0,0);
                 }
@@ -299,13 +302,16 @@ class grid {
             int x = (mx - 220) / 70;
         int y = (my - 70) / 85;
 
+
         if (gridarray[x][y]== false && !(seed_sunflower.onClick(sunCount))){
+        if (gridarray[x][y]== false){
             gridarray[x][y] = true;
         }
         else if  (gridarray[x][y]== true) {
             gridarray[x][y] = false;
         }
         }
+    }
     }
     void removePlant(int mx, int my) { //ABANDONED
         if (mx > 220 && mx < 850 && my > 70 && my < 495) { 
