@@ -56,7 +56,7 @@ class Zombie {
     void takeDamage(int damage){ //Loses HP when it is shot by a Peaball/Peashooter.
         hp -= damage;
     }
-
+    
     boolean isDead(){ //Checks if the zombie is dead.
         return hp <= 0;
     }
@@ -67,6 +67,7 @@ class Zombie {
         
         return horizontalCollision && verticalCollision;
     }
+
 
 }
 

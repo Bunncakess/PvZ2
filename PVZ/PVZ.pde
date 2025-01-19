@@ -276,7 +276,7 @@ class grid {
             int x = (mx - 220) / 70;
         int y = (my - 70) / 85;
 
-        if (gridarray[x][y]== false && !(seed_sunflower.onClick())){
+        if (gridarray[x][y]== false && !(seed_sunflower.onClick(sunCount))){
             gridarray[x][y] = true;
         }
         else if  (gridarray[x][y]== true) {
@@ -284,7 +284,7 @@ class grid {
         }
         }
     }
-    void removePlant(int mx, int my) {
+    void removePlant(int mx, int my) { //ABANDONED
         if (mx > 220 && mx < 850 && my > 70 && my < 495) { 
             int x = (mx - 220) / 70;
             int y = (my - 70) / 85;

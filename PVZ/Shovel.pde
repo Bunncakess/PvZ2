@@ -1,4 +1,4 @@
-class Shovel {
+class Shovel { //ABANDONED
     int xPos = 20;  
     int yPos = 200; 
     boolean selected = false; 

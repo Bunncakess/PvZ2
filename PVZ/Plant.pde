@@ -1,6 +1,6 @@
 
 
-class Sunflower{
+class Sunflower{ //ABANDONED
     PImage smile; 
     int hp;
 
@@ -24,7 +24,7 @@ class Sunflower{
     }
 }
 
-class WallNut{
+class WallNut{//ABANDONED
     PImage trump; 
     int hp;
 
@@ -105,15 +105,13 @@ class PeaBall {
     }
 
 void update() {
-    posX += speed; // Move the PeaBall horizontally.
-
-    // After moving, check for collision with all zombies.
+    posX += speed; 
     for (int i = zGroup.size() - 1; i >= 0; i--) {
         Zombie zom = zGroup.get(i);
-        if (zom.isHit(this)) { // Check if PeaBall hits the Zombie
-            zom.takeDamage(pDMG); // Apply damage
-            shooter.peaBalls.remove(this); // Remove the PeaBall from the list
-            break; // Break after the first collision to prevent multiple hits
+        if (zom.isHit(this)) { 
+            zom.takeDamage(pDMG); 
+            shooter.peaBalls.remove(this); 
+            break; 
         }
     }
 }

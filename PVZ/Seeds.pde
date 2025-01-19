@@ -1,6 +1,6 @@
 PImage seed;
 
-class Seeds {
+class Seeds { //ABANDONED
     String seed_name;
     int xPos = 20; // X position of seeds
     int yPos;      // Y position of the seed
