@@ -23,3 +23,5 @@ I think that the prohext made by my fellow comrades was very well thought out an
 - You can't place a plant beyond the 5 or 6 COLUMN.
 - You can delete plants without selecting shovel.
 - Restarting Game does not clear plants off the grid.
+
+//CS30 CAPSTONE FINAL SUBMISSION
