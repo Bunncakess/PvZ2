@@ -16,7 +16,7 @@ class Seeds { //ABANDONED
             seed = loadImage("sunflower_icon.png");
             seed.resize(48, 60);
         } 
-        else if (seed_name.equals("peashooter_seed")) { 
+        else if (seed_name.equals("peashooter_seed")) {  //peashotter seed in the top left corner
             seed = loadImage("peashooter_icon.png");
             seed.resize(48, 60);
         } 
@@ -34,7 +34,7 @@ class Seeds { //ABANDONED
 
         image(seed, xPos, yPos);
     }
-
+    //cheks if mose is over the region of the icon
     boolean isMouseOver() {
         return mouseX > xPos && mouseX < xPos + 48 && mouseY > yPos && mouseY < yPos + 62;
     }

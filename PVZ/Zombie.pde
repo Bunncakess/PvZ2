@@ -17,9 +17,9 @@ class Zombie {
 
     Zombie() {
         ztype = (int )random(1, 4);
-
+        
         if (ztype == 1) { // Regular Zombie
-            zombieIMG = loadImage("Zombie1.png");
+            zombieIMG = loadImage("zombie1.png");
             hp = 100;
             moveX = 0.2;
         } 

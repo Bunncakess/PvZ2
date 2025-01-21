@@ -63,17 +63,18 @@ class PeaBall {
         posY = startY;
     }
 
-void update() {
-    posX += speed; 
-    for (int i = zGroup.size() - 1; i >= 0; i--) {
-        Zombie zom = zGroup.get(i);
-        if (zom.isHit(this)) { 
-            zom.takeDamage(pDMG); 
-            shooter.peaBalls.remove(this); 
-            break; 
+    void update() {
+        posX += speed; //shoots pea
+        for (int i = zGroup.size() - 1; i >= 0; i--) {
+            Zombie zom = zGroup.get(i);
+            if (zom.isHit(this)) { //checks demage
+                zom.takeDamage(pDMG); //outputs demage
+                shooter.peaBalls.remove(this); //removes the pea
+                break; 
+            }
         }
     }
-}
+    //displays the pea
     void display() {
         image(burret, posX, posY);
     }
@@ -91,17 +92,17 @@ class Sun {
     int value = 2; //SUN VALUE
     int time_counter = 0;
 
-
+    //constructor
     Sun(float startX, float startY) {
         x = startX;
         y = startY;
         speed = 0.5;       // Default falling speed
         collected = false;
-        sunImage = loadImage("Sun.png"); // Make sure "sun.png" is in the data folder
+        sunImage = loadImage("sun.png"); // Make sure "sun.png" is in the data folder
         spawnTime = millis();
         
     }
-
+    //sun display
     void display() {
         if (!collected) {
             image(sunImage, x, y, 40, 40); // the sun image
@@ -126,11 +127,11 @@ class Sun {
             }
         }
     }
-
+    //cheks if mose is over the region of the icon
     boolean isMouseOver() {
         return mouseX > x && mouseX < x + 40 && mouseY > y && mouseY < y + 40;
     }
-
+    //collect function
     void collect() {
         if (isMouseOver() && mousePressed && !collected) {
             collected = true;

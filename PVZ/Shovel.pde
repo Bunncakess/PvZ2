@@ -19,7 +19,7 @@ class Shovel { //ABANDONED
 
         image(shovelImage, xPos, yPos);
     }
-
+    //cheks if mose is over the region of the icon
     boolean isMouseOver() {
         return mouseX > xPos && mouseX < xPos + 48 && mouseY > yPos && mouseY < yPos + 62;
     }

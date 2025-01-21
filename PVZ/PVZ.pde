@@ -1,3 +1,8 @@
+//Kenji Obenna
+//Richmond Meana
+//Artur Mararash
+
+
 //Arrays
 ArrayList<Zombie> zGroup = new ArrayList<Zombie>();
 ArrayList<Sun> suns = new ArrayList<Sun>();
@@ -19,14 +24,14 @@ int zomCount = 0; //Counter for how many zombies have been killed
 int zomKills = 5; //Need about this many zombie kills to win the game
 int zomFrequency = 300; //The timer for when Zombies generate. Every 60 = 1 second
 
-
-int loadingStartTime = 0;
-boolean isLoading = true;
-boolean isPaused = false; 
+//Loading screen 
+int loadingStartTime = 0; //Loading screen time
+boolean isLoading = true; //Boolean to check if it is loading screen
+boolean isPaused = false; //Boolean to check if it is pasued
 
 //Background Sun Variables
 int sunCount = 0; //Counter for how many Suns the player has held.
-int sunFrequency = 300; //The timer for when suns generate. Every 60 = 1 second
+int sunFrequency = 420; //The timer for when suns generate. Every 60 = 1 second
 int sunHold = 10; //Threshold for how many Suns the player can hold.
 
 //PeaBall Variable
@@ -80,8 +85,10 @@ void draw() {
     }
   
   else {
+    //Every Display that we need to have
     image(back, 0, 0);
     g.displayGrid();
+    displayBox();
     shooter.update(currentFrame);
     sunCounter();
     generateSun();
@@ -92,7 +99,7 @@ void draw() {
     displayPeashooterCost();
     displaySunflowerCost();
     displayWalnutCost();
-    
+    displayPause();
 
 
     for (int y = 0; y < g.ROWS; y++) {
@@ -141,20 +148,20 @@ void draw() {
                 }
             }
         }
-
+    //Death count of zombies
     if (zom.isDead()) {
         zGroup.remove(i);
         zomCount++;
     }
 }
-
+    // If game is over then display endcredit
     if (isGameOver()) {
         EndCredit();
         suns.clear();
         zGroup.clear();
         noLoop();
     }
-
+    //winning credit dispay
     if (isGameWinning()){ 
         WinningCredit();
         suns.clear();
@@ -212,25 +219,36 @@ void EndCredit() { //Displays the Losing Credits to the Player if the Zombies re
     text(ZombieWins, width / 2, height / 2);
 }
 
-void displayPeashooterCost() {
+void displayPeashooterCost() { //peashooter cost display function
     fill(255, 255, 0); // Yellow color for the Sun cost display
     textSize(20);
     textAlign(LEFT);
     text("Peashooter: 3 Suns", 20, height - 85);
 }
 
-void displayWalnutCost() {
+void displayWalnutCost() { //walnut cost display function
     fill(255, 255, 0); // Yellow color for the Sun cost display
     textSize(20);
     textAlign(LEFT);
     text("Walnut: 5 Suns", 20, height - 60);
 }
 
-void displaySunflowerCost() {
+void displaySunflowerCost() { //sunflower cost display function
     fill(255, 255, 0); // Yellow color for the Sun cost display
     textSize(20);
     textAlign(LEFT);
     text("Sunflower: 2 Suns", 20, height - 110);
+}
+
+void displayPause(){ //pause text display function
+    fill(255, 255, 0); // Yellow color for the Sun cost display
+    textSize(20);
+    textAlign(LEFT);
+    text("PRESS P TO PAUSE", 20, height - 135);
+}
+void displayBox(){ //box to make all dsplys above more visable
+    fill(94, 0, 0);
+    rect(15, 350, 170, 170);
 }
 
 void restartGame() { //Reinitialized all counters/values when the game is lost or won.
@@ -280,7 +298,7 @@ void mousePressed(){
 
 
 
-
+// Grid class with alll functions for it
 class grid {
     int ROWS, COLS;
     PeaShooter[][] peashooters; // Array to hold Peashooter objects
