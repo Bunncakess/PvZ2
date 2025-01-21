@@ -22,6 +22,7 @@ int zomFrequency = 300; //The timer for when Zombies generate. Every 60 = 1 seco
 
 int loadingStartTime = 0;
 boolean isLoading = true;
+boolean isPaused = false; 
 
 //Background Sun Variables
 int sunCount = 0; //Counter for how many Suns the player has held.
@@ -66,7 +67,19 @@ void draw() {
     if (millis() - loadingStartTime >= 2000) {
       isLoading = false;  // Stop the loading screen after 2 seconds
     }
-  } else {
+  } 
+  else if (isPaused) {
+        // Display "Paused" message
+        fill(0, 0, 0, 30); // Semi-transparent overlay
+        rect(0, 0, width, height);
+        textSize(50);
+        fill(255);
+        textAlign(CENTER, CENTER);
+        text("Paused", width / 2, height / 2);
+        return; // Skip the rest of the draw loop while paused
+    }
+  
+  else {
     image(back, 0, 0);
     g.displayGrid();
     shooter.update(currentFrame);
@@ -228,6 +241,9 @@ void restartGame() { //Reinitialized all counters/values when the game is lost o
 }
 
 void keyPressed(){ //The option for the player to choose to restart or quit the game.
+if (key == 'p' || key == 'P') {
+        isPaused = !isPaused; // Toggle the pause state
+}
     if (key == 'r' || key == 'R') { // Restart the game.
         restartGame();
     } 
