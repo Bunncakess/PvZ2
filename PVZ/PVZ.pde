@@ -18,7 +18,11 @@ int zomLimit = 6; //How many zombies can appear in the screen
 int zomCount = 0; //Counter for how many zombies have been killed
 int zomKills = 5; //Need about this many zombie kills to win the game
 int zomFrequency = 300; //The timer for when Zombies generate. Every 60 = 1 second
-    
+
+
+int loadingStartTime = 0;
+boolean isLoading = true;
+
 //Background Sun Variables
 int sunCount = 0; //Counter for how many Suns the player has held.
 int sunFrequency = 300; //The timer for when suns generate. Every 60 = 1 second
@@ -35,6 +39,7 @@ void setup(){
      g = new grid(9, 5);
      back = loadImage("Background1.png");
 
+    loadingStartTime = millis();
 
      zomzom = new Zombie(); // Zombie Class
      shooter = new PeaShooter(); // PeaShooter Class
@@ -49,6 +54,19 @@ void setup(){
 }
 
 void draw() {
+    if (isLoading) {
+    // Display loading screen
+    background(0);
+    fill(255);
+    textSize(50);
+    textAlign(CENTER, CENTER);
+    text("Loading...", width / 2, height / 2);
+    
+    // Check if 2 seconds have passed
+    if (millis() - loadingStartTime >= 2000) {
+      isLoading = false;  // Stop the loading screen after 2 seconds
+    }
+  } else {
     image(back, 0, 0);
     g.displayGrid();
     shooter.update(currentFrame);
@@ -130,8 +148,8 @@ void draw() {
         zGroup.clear();
         noLoop();
     }
+    }
 }
-
 /////////////////////METHODS////////////////////
 
 void generateSun() { //Generate background Sun periodically.
